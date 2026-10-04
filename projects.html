@@ -1,0 +1,113 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8"/><meta name="viewport" content="width=device-width,initial-scale=1.0"/>
+  <title>Projects · Srushti Dhobley</title>
+  <link rel="preconnect" href="https://fonts.googleapis.com"/>
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin/>
+  <link href="https://fonts.googleapis.com/css2?family=Inter:wght@300;400;500;600&family=Fraunces:ital,opsz,wght@0,9..144,300;0,9..144,400;1,9..144,300;1,9..144,400&display=swap" rel="stylesheet" />
+  <link rel="stylesheet" href="style.css"/>
+  <style>
+    /* Turns the project link green on hover */
+    .project-row:hover .project-link,
+    .project-link:hover {
+      color: #b9ff4b !important;
+      transition: color 0.2s ease;
+    }
+  </style>
+</head>
+<body>
+  <nav class="nav" id="nav">
+    <a href="index.html" class="nav-logo"><img src="logo.jpg" alt="Srushti Logo" style="height:40px;width:auto;display:block;" /></a>
+    <div class="nav-links">
+      <a href="projects.html">Projects</a>
+      <a href="about.html">About Me</a>
+      <a href="index.html#contact">Let's Connect</a>
+      <a href="Srushti_Dhobley_Resume.pdf" class="nav-cta" download>Download CV</a>
+    </div>
+    <button class="nav-burger" id="burger" aria-label="menu"><span></span><span></span></button>
+  </nav>
+  <div class="nav-mobile" id="navMobile">
+    <a href="projects.html">Projects</a>
+    <a href="about.html">About Me</a>
+    <a href="index.html#contact">Let's Connect</a>
+    <a href="Srushti_Dhobley_Resume.pdf" download>Download CV</a>
+  </div>
+  <div class="page-hero">
+    <h1>Projects &amp; Case Studies</h1>
+  </div>
+  <div class="projects-full">
+    
+    <!-- MOVED TO TOP: Heritage Site Preservation Case Study -->
+    <a href="case-study-bunratty.html" class="project-row">
+      <div class="project-card__img" style="background:#0a0a0a;position:relative;">
+        <img src="bunratty-cover.jpg" alt="Heritage Site Preservation by VR — Bunratty Castle" style="width:100%;height:100%;object-fit:cover;object-position:center center;" onerror="this.style.display='none'" />
+      </div>
+      <div class="project-card__body">
+        <div class="project-tags"><span class="tag">VR / XR Design</span><span class="tag">Heritage Tech</span><span class="tag">MSc Thesis</span></div>
+        <h2>Heritage Site Preservation by VR — Surfacing erased histories at Bunratty Castle.</h2>
+        <p style="font-size:14px;color:var(--text-dim);font-weight:300;line-height:1.6;margin-top:8px;">Sheela na Gig reassembly chamber + Living Stone era filter · Meta Quest 3 · Unity 6 · 5 user testing participants · −72 NPS gap addressed.</p>
+        <span class="project-link" style="margin-top:12px;">View Case Study →</span>
+      </div>
+    </a>
+
+    <a href="case-study-kaleidoscope.html" class="project-row">
+      <div class="project-card__img" style="background:#0a0a0a;">
+        <img src="kaleido-final.jpg" alt="Detachable Kaleidoscope sculpture" style="width:100%;height:100%;object-fit:cover;object-position:center 20%;" />
+      </div>
+      <div class="project-card__body">
+        <div class="project-tags">
+          <span class="tag">Interaction Design</span>
+          <span class="tag">Physical Computing</span>
+          <span class="tag">Interactive Art</span>
+        </div>
+        <h2>Detachable Kaleidoscope — Modular sculpture where rearranging physical blocks rewrites the truth of the same police interview narrative.</h2>
+        <p style="font-size:14px;color:var(--text-dim);font-weight:300;line-height:1.6;margin-top:8px;">4 laser-cut MDF octagonal blocks · Resistor network sensing · Arduino · Pure Data audio sequencing · Mirrored acrylic kaleidoscope.</p>
+        <span class="project-link" style="margin-top:12px;">View Case Study + Video →</span>
+      </div>
+    </a>
+
+    <a href="case-study-pharmasight.html" class="project-row">
+      <div class="project-card__img" style="background:#0a0a0a;">
+        <img src="pharma-cover.jpg" alt="Pharmasight BI platform" style="width:100%;height:100%;object-fit:cover;object-position:center center;" />
+      </div>
+      <div class="project-card__body">
+        <div class="project-tags"><span class="tag">Healthcare UX</span><span class="tag">Research</span></div>
+        <h2>Pharmasight — Replacing guesswork in pharmacy supply chains with a collaborative BI platform built for 3 distinct user types.</h2>
+        <p style="font-size:14px;color:var(--text-dim);font-weight:300;line-height:1.6;margin-top:8px;">End to end user interaction from 3 onsite stakeholder personas → 5 research insights → high-fidelity UI with AI confidence scoring and traffic light alerts.</p>
+        <span class="project-link" style="margin-top:12px;">View Case Study →</span>
+      </div>
+    </a>
+
+    <a href="case-study-vortex.html" class="project-row">
+      <div class="project-card__img" style="background:#0a0a0a;">
+        <img src="vortex-cover.jpg" alt="Vortex brand identity" style="width:100%;height:100%;object-fit:cover;object-position:left center;" />
+      </div>
+      <div class="project-card__body">
+        <div class="project-tags"><span class="tag">B2C</span><span class="tag">Brand Identity</span><span class="tag">UX/UI</span><span class="tag">Metaverse</span></div>
+        <h2>Vortex — Unified 3 touchpoints for a car modification brand into one coherent digital and spatial experience.</h2>
+        <p style="font-size:14px;color:var(--text-dim);font-weight:300;line-height:1.6;margin-top:8px;">Brand identity system, website UX/UI, and metaverse showcase concept — designed as a unified design language across all three contexts.</p>
+        <span class="project-link" style="margin-top:12px;">View Case Study →</span>
+      </div>
+    </a>
+
+    <a href="case-study-barnhouse.html" class="project-row">
+      <div class="project-card__img" style="background:#0a0a0a;">
+        <img src="barn-house-cover.jpg" alt="The Barn House wellness app" style="width:100%;height:100%;object-fit:cover;object-position:center center;" />
+      </div>
+      <div class="project-card__body">
+        <div class="project-tags"><span class="tag">Brand Identity</span><span class="tag">UX/UI</span></div>
+        <h2>The Barn House —Brand Identity & Holistic Wellness App for Mindful Eating Among Urban Women</h2>
+        <p style="font-size:14px;color:var(--text-dim);font-weight:300;line-height:1.6;margin-top:8px;">Stakeholder mapping, brand identity, age-differentiated publications, event design, and website wireframes across a full institutional system.</p>
+        <span class="project-link" style="margin-top:12px;">View Case Study →</span>
+      </div>
+    </a>
+
+  </div>
+  <footer class="footer">
+    <span>SRUSHTI DHOBLEY © 2026</span>
+    <span>INTERACTION &amp; VISUAL DESIGNER</span>
+  </footer>
+  <script src="script.js"></script>
+</body>
+</html>

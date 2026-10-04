@@ -1,0 +1,241 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 1200 900" font-family="'Helvetica Neue', Arial, sans-serif">
+  <defs>
+    <!-- Wood grain -->
+    <filter id="wood">
+      <feTurbulence type="fractalNoise" baseFrequency="0.02 0.4" numOctaves="3" seed="4"/>
+      <feColorMatrix values="0 0 0 0 0.82  0 0 0 0 0.68  0 0 0 0 0.48  0 0 0 0.4 0"/>
+      <feComposite in2="SourceGraphic" operator="in"/>
+    </filter>
+    <linearGradient id="woodFace" x1="0%" y1="0%" x2="100%" y2="100%">
+      <stop offset="0%" stop-color="#d4b585"/>
+      <stop offset="100%" stop-color="#b89567"/>
+    </linearGradient>
+    <linearGradient id="woodFaceDark" x1="0%" y1="0%" x2="100%" y2="100%">
+      <stop offset="0%" stop-color="#b59568"/>
+      <stop offset="100%" stop-color="#8f7148"/>
+    </linearGradient>
+    <linearGradient id="woodFaceTop" x1="0%" y1="0%" x2="100%" y2="100%">
+      <stop offset="0%" stop-color="#e0c394"/>
+      <stop offset="100%" stop-color="#c7a478"/>
+    </linearGradient>
+    <linearGradient id="frosted" x1="0%" y1="0%" x2="0%" y2="100%">
+      <stop offset="0%" stop-color="#e8eef2" stop-opacity="0.85"/>
+      <stop offset="100%" stop-color="#c8d2d8" stop-opacity="0.85"/>
+    </linearGradient>
+    <linearGradient id="copperGrad" x1="0%" y1="0%" x2="100%" y2="100%">
+      <stop offset="0%" stop-color="#d4823a"/>
+      <stop offset="50%" stop-color="#b6622a"/>
+      <stop offset="100%" stop-color="#8a4618"/>
+    </linearGradient>
+    <radialGradient id="hole" cx="50%" cy="50%" r="50%">
+      <stop offset="0%" stop-color="#000"/>
+      <stop offset="70%" stop-color="#0a0a0a"/>
+      <stop offset="100%" stop-color="#1a1a1a"/>
+    </radialGradient>
+    <style>
+      .lbl-title { font-size: 28px; font-weight: 700; fill: #1a1a1a; letter-spacing: 1px; }
+      .lbl-sub { font-size: 14px; fill: #555; letter-spacing: 0.5px; }
+      .lbl-callout { font-size: 13px; fill: #222; font-weight: 500; }
+      .lbl-tag { font-size: 11px; fill: #555; }
+      .lbl-block { font-size: 20px; font-weight: 700; fill: #3a2810; }
+      .edge { fill: none; stroke: #4a3a20; stroke-width: 0.8; stroke-linejoin: round; }
+      .edge-bold { fill: none; stroke: #2a1e0a; stroke-width: 1.2; stroke-linejoin: round; }
+      .arrow-line { fill: none; stroke: #333; stroke-width: 1; }
+    </style>
+    <marker id="arr" markerWidth="8" markerHeight="8" refX="7" refY="3" orient="auto">
+      <path d="M0,0 L0,6 L8,3 z" fill="#333"/>
+    </marker>
+  </defs>
+
+  <rect width="1200" height="900" fill="#fafaf5"/>
+
+  <!-- Title block -->
+  <text x="50" y="55" class="lbl-title">Prototype View — Stacked Sculpture</text>
+  <text x="50" y="78" class="lbl-sub">Isometric render · 5 octagonal modules · scale 1:1 concept</text>
+  <line x1="50" y1="92" x2="750" y2="92" stroke="#ccc" stroke-width="1"/>
+
+  <!-- ========= MAIN STACK (isometric) ========= -->
+  <!-- Centered on x=500, built bottom-up -->
+
+  <!-- Ground shadow -->
+  <ellipse cx="500" cy="790" rx="220" ry="22" fill="#000" opacity="0.18"/>
+
+  <!-- Parameters: 
+       - Each block is an octagonal prism
+       - ISO projection: top face flattened to ellipse-like octagon
+       - Height per block: 100px
+       - Start bottom at y=780, go up 
+  -->
+
+  <!-- ========= BLOCK D (bottom) ========= -->
+  <g id="blockD">
+    <!-- Bottom face (only edge visible) -->
+    <!-- Back faces (darker) -->
+    <polygon points="380,700 380,770 420,790 420,720" fill="url(#woodFaceDark)" class="edge"/>
+    <polygon points="420,720 420,790 480,800 480,730" fill="url(#woodFaceDark)" class="edge"/>
+    <!-- Front faces (lighter) -->
+    <polygon points="480,730 480,800 540,800 540,730" fill="url(#woodFace)" class="edge"/>
+    <polygon points="540,730 540,800 600,790 600,720" fill="url(#woodFace)" class="edge"/>
+    <polygon points="600,720 600,790 640,770 640,700" fill="url(#woodFace)" class="edge"/>
+
+    <!-- Top of block D -->
+    <polygon points="380,700 420,720 480,730 540,730 600,720 640,700 620,680 560,670 460,670 400,680"
+             fill="url(#woodFaceTop)" class="edge-bold"/>
+
+    <!-- Copper contact pad on visible front face -->
+    <rect x="493" y="750" width="36" height="30" fill="url(#copperGrad)" class="edge"/>
+    <circle cx="511" cy="765" r="4" fill="#2a1e0a"/>
+
+    <!-- Block label -->
+    <text x="505" y="775" class="lbl-block">D</text>
+  </g>
+
+  <!-- ========= BLOCK C ========= -->
+  <g id="blockC">
+    <polygon points="380,630 380,700 420,720 420,650" fill="url(#woodFaceDark)" class="edge"/>
+    <polygon points="420,650 420,720 480,730 480,660" fill="url(#woodFaceDark)" class="edge"/>
+    <polygon points="480,660 480,730 540,730 540,660" fill="url(#woodFace)" class="edge"/>
+    <polygon points="540,660 540,730 600,720 600,650" fill="url(#woodFace)" class="edge"/>
+    <polygon points="600,650 600,720 640,700 640,630" fill="url(#woodFace)" class="edge"/>
+    <polygon points="380,630 420,650 480,660 540,660 600,650 640,630 620,610 560,600 460,600 400,610"
+             fill="url(#woodFaceTop)" class="edge-bold"/>
+    <rect x="493" y="680" width="36" height="30" fill="url(#copperGrad)" class="edge"/>
+    <circle cx="511" cy="695" r="4" fill="#2a1e0a"/>
+    <text x="505" y="705" class="lbl-block">C</text>
+  </g>
+
+  <!-- ========= BLOCK B ========= -->
+  <g id="blockB">
+    <polygon points="380,560 380,630 420,650 420,580" fill="url(#woodFaceDark)" class="edge"/>
+    <polygon points="420,580 420,650 480,660 480,590" fill="url(#woodFaceDark)" class="edge"/>
+    <polygon points="480,590 480,660 540,660 540,590" fill="url(#woodFace)" class="edge"/>
+    <polygon points="540,590 540,660 600,650 600,580" fill="url(#woodFace)" class="edge"/>
+    <polygon points="600,580 600,650 640,630 640,560" fill="url(#woodFace)" class="edge"/>
+    <polygon points="380,560 420,580 480,590 540,590 600,580 640,560 620,540 560,530 460,530 400,540"
+             fill="url(#woodFaceTop)" class="edge-bold"/>
+    <rect x="493" y="610" width="36" height="30" fill="url(#copperGrad)" class="edge"/>
+    <circle cx="511" cy="625" r="4" fill="#2a1e0a"/>
+    <text x="505" y="635" class="lbl-block">B</text>
+  </g>
+
+  <!-- ========= BLOCK A ========= -->
+  <g id="blockA">
+    <polygon points="380,490 380,560 420,580 420,510" fill="url(#woodFaceDark)" class="edge"/>
+    <polygon points="420,510 420,580 480,590 480,520" fill="url(#woodFaceDark)" class="edge"/>
+    <polygon points="480,520 480,590 540,590 540,520" fill="url(#woodFace)" class="edge"/>
+    <polygon points="540,520 540,590 600,580 600,510" fill="url(#woodFace)" class="edge"/>
+    <polygon points="600,510 600,580 640,560 640,490" fill="url(#woodFace)" class="edge"/>
+    <polygon points="380,490 420,510 480,520 540,520 600,510 640,490 620,470 560,460 460,460 400,470"
+             fill="url(#woodFaceTop)" class="edge-bold"/>
+    <rect x="493" y="540" width="36" height="30" fill="url(#copperGrad)" class="edge"/>
+    <circle cx="511" cy="555" r="4" fill="#2a1e0a"/>
+    <text x="505" y="565" class="lbl-block">A</text>
+  </g>
+
+  <!-- ========= KALEIDOSCOPE BLOCK (top) ========= -->
+  <g id="blockK">
+    <!-- Frosted/translucent appearance -->
+    <polygon points="380,420 380,490 420,510 420,440" fill="url(#frosted)" class="edge" opacity="0.9"/>
+    <polygon points="420,440 420,510 480,520 480,450" fill="url(#frosted)" class="edge" opacity="0.9"/>
+    <polygon points="480,450 480,520 540,520 540,450" fill="url(#frosted)" class="edge" opacity="0.92"/>
+    <polygon points="540,450 540,520 600,510 600,440" fill="url(#frosted)" class="edge" opacity="0.92"/>
+    <polygon points="600,440 600,510 640,490 640,420" fill="url(#frosted)" class="edge" opacity="0.9"/>
+
+    <!-- Top face with viewing hole -->
+    <polygon points="380,420 420,440 480,450 540,450 600,440 640,420 620,400 560,390 460,390 400,400"
+             fill="url(#woodFaceTop)" class="edge-bold"/>
+
+    <!-- Viewing hole -->
+    <ellipse cx="510" cy="420" rx="22" ry="8" fill="url(#hole)" class="edge-bold"/>
+
+    <!-- Decorative etching on top (wave motif from their photo reference) -->
+    <path d="M 425,430 Q 445,425 465,430 Q 485,435 505,430" fill="none" stroke="#6a4a20" stroke-width="0.6" opacity="0.6"/>
+    <path d="M 525,430 Q 545,425 565,430 Q 585,435 605,430" fill="none" stroke="#6a4a20" stroke-width="0.6" opacity="0.6"/>
+
+    <!-- Mirror hint inside (visible through frosted face) -->
+    <line x1="495" y1="465" x2="525" y2="510" stroke="#8aa0b0" stroke-width="1" opacity="0.6"/>
+    <line x1="530" y1="465" x2="500" y2="510" stroke="#8aa0b0" stroke-width="1" opacity="0.6"/>
+  </g>
+
+  <!-- ========= CALLOUTS ========= -->
+
+  <!-- Callout 1: Top block / kaleidoscope -->
+  <g id="cal1">
+    <line x1="510" y1="410" x2="750" y2="240" class="arrow-line"/>
+    <circle cx="510" cy="410" r="3" fill="#333"/>
+    <rect x="750" y="200" width="380" height="90" fill="#fff" stroke="#aaa" stroke-width="0.8"/>
+    <text x="765" y="225" class="lbl-callout" font-weight="700">Kaleidoscope module (top)</text>
+    <text x="765" y="248" class="lbl-tag">• Frosted acrylic walls (sides) + MDF top</text>
+    <text x="765" y="265" class="lbl-tag">• Triangular mirror prism inside (3× reflective strips)</text>
+    <text x="765" y="282" class="lbl-tag">• Ø 22 mm viewing hole — LED-lit slide base</text>
+  </g>
+
+  <!-- Callout 2: Audio block -->
+  <g id="cal2">
+    <line x1="525" y1="555" x2="770" y2="480" class="arrow-line"/>
+    <circle cx="525" cy="555" r="3" fill="#333"/>
+    <rect x="770" y="440" width="380" height="90" fill="#fff" stroke="#aaa" stroke-width="0.8"/>
+    <text x="785" y="465" class="lbl-callout" font-weight="700">Audio block (× 4: A, B, C, D)</text>
+    <text x="785" y="488" class="lbl-tag">• 3 mm MDF octagonal prism, 100 × 100 × 50 mm</text>
+    <text x="785" y="505" class="lbl-tag">• Copper contact pad (15 × 15 mm) centred per face</text>
+    <text x="785" y="522" class="lbl-tag">• Internal resistor network bridges selected faces</text>
+  </g>
+
+  <!-- Callout 3: Contact pad -->
+  <g id="cal3">
+    <line x1="511" y1="765" x2="770" y2="730" class="arrow-line"/>
+    <circle cx="511" cy="765" r="3" fill="#333"/>
+    <rect x="770" y="685" width="380" height="90" fill="#fff" stroke="#aaa" stroke-width="0.8"/>
+    <text x="785" y="710" class="lbl-callout" font-weight="700">Copper contact interface</text>
+    <text x="785" y="733" class="lbl-tag">• Adhesive copper tape pad on each face</text>
+    <text x="785" y="750" class="lbl-tag">• Solder joint connects to internal resistor leg</text>
+    <text x="785" y="767" class="lbl-tag">• Touching faces = electrical node between blocks</text>
+  </g>
+
+  <!-- Callout 4: Rearrangement -->
+  <g id="cal4">
+    <line x1="380" y1="560" x2="230" y2="480" class="arrow-line"/>
+    <circle cx="380" cy="560" r="3" fill="#333"/>
+    <rect x="50" y="430" width="290" height="120" fill="#fff" stroke="#aaa" stroke-width="0.8"/>
+    <text x="65" y="455" class="lbl-callout" font-weight="700">Rearrangement plane</text>
+    <text x="65" y="478" class="lbl-tag">The audience may:</text>
+    <text x="65" y="495" class="lbl-tag">• Swap two blocks vertically</text>
+    <text x="65" y="512" class="lbl-tag">• Rotate a block around its vertical axis</text>
+    <text x="65" y="529" class="lbl-tag">• Remove / reinsert a block entirely</text>
+    <text x="65" y="546" class="lbl-tag">Each change alters the conductive path.</text>
+  </g>
+
+  <!-- Callout 5: Arduino line out -->
+  <g id="cal5">
+    <line x1="640" y1="700" x2="290" y2="690" class="arrow-line"/>
+    <circle cx="640" cy="700" r="3" fill="#333"/>
+    <path d="M 500,780 Q 340,800 220,740" fill="none" stroke="#888" stroke-width="1.2" stroke-dasharray="4,3"/>
+    <rect x="50" y="620" width="290" height="100" fill="#fff" stroke="#aaa" stroke-width="0.8"/>
+    <text x="65" y="645" class="lbl-callout" font-weight="700">Signal tap (bottom block)</text>
+    <text x="65" y="668" class="lbl-tag">Two wires exit block D base:</text>
+    <text x="65" y="685" class="lbl-tag">• 5 V in (from Arduino)</text>
+    <text x="65" y="702" class="lbl-tag">• A0 analog sense (voltage divider output)</text>
+  </g>
+
+  <!-- Coordinate / scale -->
+  <g transform="translate(900,820)">
+    <line x1="0" y1="0" x2="80" y2="0" stroke="#333" stroke-width="1.2"/>
+    <line x1="0" y1="-4" x2="0" y2="4" stroke="#333" stroke-width="1.2"/>
+    <line x1="80" y1="-4" x2="80" y2="4" stroke="#333" stroke-width="1.2"/>
+    <text x="40" y="20" text-anchor="middle" class="lbl-tag">≈ 100 mm</text>
+  </g>
+
+  <!-- Legend -->
+  <g transform="translate(50,810)">
+    <rect x="0" y="0" width="140" height="70" fill="#fff" stroke="#aaa" stroke-width="0.8"/>
+    <text x="10" y="18" class="lbl-callout" font-weight="700">Legend</text>
+    <rect x="10" y="28" width="12" height="10" fill="url(#woodFace)"/>
+    <text x="28" y="37" class="lbl-tag">3 mm MDF</text>
+    <rect x="10" y="42" width="12" height="10" fill="url(#frosted)"/>
+    <text x="28" y="51" class="lbl-tag">Frosted acrylic</text>
+    <rect x="10" y="56" width="12" height="10" fill="url(#copperGrad)"/>
+    <text x="28" y="65" class="lbl-tag">Copper contact</text>
+  </g>
+
+</svg>
