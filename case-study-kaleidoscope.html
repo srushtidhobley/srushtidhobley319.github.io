@@ -1,0 +1,318 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <title>Detachable Kaleidoscope · Srushti Dhobley</title>
+  <meta name="description" content="Detachable Kaleidoscope — a modular interactive sculpture exploring narrative truth through physical rearrangement. Interactive Media project, University of Limerick." />
+  <link rel="preconnect" href="https://fonts.googleapis.com" />
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
+  <link href="https://fonts.googleapis.com/css2?family=Inter:wght@300;400;500;600&family=Fraunces:ital,opsz,wght@0,9..144,300;0,9..144,400;1,9..144,300;1,9..144,400&display=swap" rel="stylesheet" />
+  <link rel="stylesheet" href="style.css" />
+  <style>
+    .yt-wrap { position:relative;width:100%;padding-bottom:56.25%;height:0;overflow:hidden;border-radius:var(--radius-lg);border:1px solid var(--border);margin:32px 0;background:#000; }
+    .yt-wrap iframe { position:absolute;top:0;left:0;width:100%;height:100%;border:none; }
+    .collab-tag { display:inline-flex;align-items:center;gap:6px;font-size:11px;color:var(--text-dim);background:var(--bg2);border:1px solid var(--border);padding:4px 12px;border-radius:100px;margin-top:8px; }
+    .img-full { width:100%;border-radius:var(--radius-lg);border:1px solid var(--border);display:block;margin:28px 0; }
+    .img-caption { font-size:15px;color:var(--text-faint);text-align:center;margin-top:-18px;margin-bottom:28px;font-style:italic; }
+    .img-grid-2 { display:grid;grid-template-columns:1fr 1fr;gap:12px;margin:28px 0; }
+    .img-grid-2 img { width:100%;border-radius:var(--radius);border:1px solid var(--border);display:block;object-fit:cover;height:240px; }
+    .stat-grid { display:grid;grid-template-columns:1fr 1fr;gap:12px;margin:24px 0; }
+    .stat-card { background:var(--bg2);border:1px solid var(--border);border-radius:var(--radius);padding:18px 20px; }
+    .stat-num { font-family:var(--ff-display);font-size:32px;font-weight:300;color:var(--accent);line-height:1;margin-bottom:8px; }
+    .stat-lbl { font-size:13px;color:var(--text-dim);font-weight:300;line-height:1.5; }
+    .tech-pills { display:flex;flex-wrap:wrap;gap:8px;margin:16px 0; }
+    .tech-pill { font-size:12px;font-weight:500;padding:5px 14px;border-radius:100px;background:var(--bg3);border:1px solid var(--border);color:var(--text); }
+    .tech-pill--accent { background:rgba(185,255,75,0.08);border-color:rgba(185,255,75,0.25);color:var(--accent); }
+
+    /* ── HORIZONTAL FLOWCHART ── */
+    .flow-wrap { margin:28px 0;overflow-x:auto;padding-bottom:8px; }
+    .flow { display:flex;align-items:center;gap:0;min-width:700px; }
+    .flow-node { display:flex;flex-direction:column;align-items:center;gap:6px;flex-shrink:0; }
+    .flow-box { background:var(--bg2);border:1px solid var(--border);border-radius:8px;padding:10px 14px;text-align:center;min-width:90px;max-width:110px; }
+    .flow-box--diamond { background:rgba(185,255,75,0.08);border-color:rgba(185,255,75,0.4);clip-path:polygon(50% 0%,100% 50%,50% 100%,0% 50%);padding:18px 10px;min-width:80px; }
+    .flow-box--start { background:var(--bg3);border-color:var(--accent);border-radius:20px; }
+    .flow-label { font-size:10px;font-weight:500;color:var(--text);line-height:1.3;letter-spacing:0.01em; }
+    .flow-sub { font-size:9px;color:var(--text-dim);margin-top:2px;line-height:1.3; }
+    .flow-step { font-size:9px;font-weight:700;letter-spacing:0.1em;color:var(--accent); }
+    .flow-arrow { display:flex;align-items:center;flex-shrink:0;padding:0 4px; }
+    .flow-arrow svg { display:block; }
+    @media(max-width:700px){ .img-grid-2{grid-template-columns:1fr;} .stat-grid{grid-template-columns:1fr;} }
+  </style>
+</head>
+<body>
+
+  <nav class="nav" id="nav">
+    <a href="index.html" class="nav-logo"><img src="logo.jpg" alt="Srushti Logo" style="height:40px;width:auto;display:block;" /></a>
+    <div class="nav-links">
+      <a href="projects.html">Projects</a>
+      <a href="about.html">About Me</a>
+      <a href="index.html#contact">Let's Connect</a>
+      <a href="Srushti_Dhobley_Resume.pdf" class="nav-cta" download>Download CV</a>
+    </div>
+    <button class="nav-burger" id="burger" aria-label="menu"><span></span><span></span></button>
+  </nav>
+  <div class="nav-mobile" id="navMobile">
+    <a href="projects.html">Projects</a>
+    <a href="about.html">About Me</a>
+    <a href="index.html#contact">Let's Connect</a>
+    <a href="Srushti_Dhobley_Resume.pdf" download>Download CV</a>
+  </div>
+
+  <!-- HERO -->
+  <div class="case-hero">
+    <a href="projects.html" style="font-size:13px;color:var(--text-dim);display:inline-flex;align-items:center;gap:6px;margin-bottom:32px;">← Back to projects</a>
+    <div class="project-tags">
+      <span class="tag">Interaction Design</span>
+      <span class="tag">Physical Computing</span>
+      <span class="tag">Interactive Art</span>
+      
+    </div>
+    <h1>Detachable Kaleidoscope — A Modular Sculpture Where Rearranging Physical Blocks Rewrites the Truth of the Same Story</h1>
+    
+    <div class="case-meta-grid">
+      <div class="case-meta-item"><span class="case-meta-label">My Role</span><span class="case-meta-value">Interaction & Narrative Designer</span></div>
+      
+      <div class="case-meta-item"><span class="case-meta-label">Tech Stack</span><span class="case-meta-value">Arduino · Pure Data · MDF · Acrylic</span></div>
+      
+    </div>
+  </div>
+
+  <!-- VIDEO -->
+  <div style="max-width:900px;margin:0 auto;padding:0 48px 20px;">
+    <div class="yt-wrap">
+      <iframe src="https://www.youtube.com/embed/QLhWnRbSY3s" title="Detachable Kaleidoscope Demo" allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture" allowfullscreen></iframe>
+    </div>
+    <p style="font-size:12px;color:var(--text-faint);text-align:center;margin-top:-16px;font-style:italic;">Watch the sculpture in action — rearranging the blocks changes the audio narrative sequence in real time.</p>
+  </div>
+
+  <!-- FINAL SCULPTURE HERO IMAGE -->
+  <div style="max-width:900px;margin:0 auto;padding:0 48px 60px;">
+    <img src="kaleido-closeup.jpg" alt="Close-up of Detachable Kaleidoscope blocks showing copper contact pads and laser-engraved narrative faces" class="img-full" style="height:560px;object-fit:cover;object-position:center 40%;" />
+    <p class="img-caption">The four hexagonal blocks disassembled — copper contact pads on each face, laser engraved narrative imagery (Missing poster, target, running dog) and the resistor network inside each block.</p>
+  </div>
+
+  <!-- BODY -->
+  <div class="case-body">
+
+    <div class="case-section">
+      <h2>The Concept</h2>
+      <p>What if the truth of a story depended not on what was said, but on the order in which you heard it?</p>
+      <p>The Detachable Kaleidoscope is a modular interactive sculpture that makes that question physical. Four hexagonal MDF blocks, each carrying a fragment of the same police interview dialogue, can be rearranged by anyone who approaches the sculpture. Every new arrangement triggers a different sequence of audio (the same words, the same characters, but a completely different interpretation of what happened).</p>
+      <p>The concept grew out of observations about how social media platforms like TikTok or Instagram Reels present information. These platforms don't typically change the facts of a story, they fragment and resequence them. Audiences form conclusions from clips, headlines and out of context excerpts. The sculpture makes that mechanism visible and tangible.</p>
+    </div>
+
+    <div class="case-section">
+      <h2>The Broader Question</h2>
+      <div class="case-callout">"Truth is not always in the information, it's in how the information is arranged and interacted with."</div>
+      <p>The dialogue between the two characters in the police interview never changes. The words are the same in every configuration. But the emotional reading shifts dramatically depending on sequence. A statement that sounds suspicious in one order becomes exculpatory in another. Audiences become aware, through direct physical experience of how structure creates meaning.</p>
+    </div>
+
+    <!-- IDEATION SKETCH -->
+    <div class="case-section">
+      <h2>Early Ideation</h2>
+      <p>Early sketches explored the modular block system labelled A, B, C, D each containing a resistor between copper contact faces, topped by a kaleidoscope viewing piece. The 6-sided form gave 6 possible contact orientations per block, creating a rich enough combinatorial space to map onto distinct audio sequences without needing complex electronics.</p>
+      <img src="kaleido-sketch.png" alt="Early ideation sketch showing octagonal block structure, audio block diagram, and cross-section of resistor placement" class="img-full" />
+      <p class="img-caption">Early ideation sketches (modular block structure, audio block system and cross section showing resistor placement between copper pads (1kΩ, 4.7kΩ, 10kΩ, 22kΩ)).</p>
+    </div>
+
+    <div class="case-section">
+      <h2>Research & Theoretical Grounding</h2>
+      <ul>
+        <li><strong style="color:var(--text)">Cybernetic and Systems Art (Wiener, 1948; Burnham, 1968)</strong> Cybernetic art creates feedback loops between audience and machine. Burnham's systems aesthetics argues that the behaviour and relationships within an artwork matter more than the object itself. The Kaleidoscope's meaning emerges entirely from interaction, not from the sculpture's static form.</li>
+        <li><strong style="color:var(--text)">Tangible Interaction (Ishii & Ullmer, 1997)</strong> Physical objects as interfaces into the digital world rather than graphical screens. The blocks are simultaneously sculpture and input device. No screens, no buttons the interface is the object.</li>
+        <li><strong style="color:var(--text)">Duchamp's Rotoreliefs (1935)</strong> Optical discs using repeated visual components that created entirely different images depending on viewpoint. The kaleidoscope element draws directly from this the same fragments, infinite compositions.</li>
+      </ul>
+    </div>
+
+    <!-- TECHNICAL SYSTEM -->
+    <div class="case-section">
+      <h2>Technical System</h2>
+      <p>The sculpture functions through analogue electronics, Arduino sensing and audio sequencing in Pure Data. Each block contains different resistor values which when stacked, the blocks form a resistor network whose total resistance changes with arrangement. Arduino reads the voltage and sends values to Pure Data, which maps resistance ranges to audio sequences.</p>
+
+      <div class="tech-pills">
+        <span class="tech-pill tech-pill--accent">Arduino Uno</span>
+        <span class="tech-pill tech-pill--accent">Pure Data</span>
+        <span class="tech-pill">Resistor Networks</span>
+        <span class="tech-pill">Copper Contact Pads</span>
+        <span class="tech-pill">Analogue Voltage Sensing</span>
+        <span class="tech-pill">Serial Communication</span>
+        <span class="tech-pill">WAV Audio Playback</span>
+      </div>
+
+      <!-- HORIZONTAL FLOWCHART replacing the handwritten one -->
+      <p style="margin-bottom:4px;font-size:13px;color:var(--text-dim);">Signal flow — how a physical block rearrangement becomes an audio narrative:</p>
+      <div class="flow-wrap">
+        <div class="flow">
+
+          <div class="flow-node">
+            <div class="flow-box flow-box--start">
+              <div class="flow-step">01</div>
+              <div class="flow-label">User Rearranges Blocks</div>
+              
+            </div>
+          </div>
+
+          <div class="flow-arrow">
+            <svg width="32" height="16" viewBox="0 0 32 16"><path d="M2 8 H28 M22 3 L28 8 L22 13" stroke="#b9ff4b" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round" fill="none"/></svg>
+          </div>
+
+          <div class="flow-node">
+            <div class="flow-box">
+              <div class="flow-step">02</div>
+              <div class="flow-label">Copper Network Shifts</div>
+              <div class="flow-sub">contact pads align</div>
+            </div>
+          </div>
+
+          <div class="flow-arrow">
+            <svg width="32" height="16" viewBox="0 0 32 16"><path d="M2 8 H28 M22 3 L28 8 L22 13" stroke="#555" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round" fill="none"/></svg>
+          </div>
+
+          <div class="flow-node">
+            <div class="flow-box">
+              <div class="flow-step">03</div>
+              <div class="flow-label">Resistor Network Shifts</div>
+              <div class="flow-sub">1k / 4.7k / 10k / 22kΩ</div>
+            </div>
+          </div>
+
+          <div class="flow-arrow">
+            <svg width="32" height="16" viewBox="0 0 32 16"><path d="M2 8 H28 M22 3 L28 8 L22 13" stroke="#555" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round" fill="none"/></svg>
+          </div>
+
+          <div class="flow-node">
+            <div class="flow-box" style="background:rgba(185,255,75,0.06);border-color:rgba(185,255,75,0.3);">
+              <div class="flow-step">04</div>
+              <div class="flow-label">Voltage Changes</div>
+              <div class="flow-sub">analogue reading</div>
+            </div>
+          </div>
+
+          <div class="flow-arrow">
+            <svg width="32" height="16" viewBox="0 0 32 16"><path d="M2 8 H28 M22 3 L28 8 L22 13" stroke="#555" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round" fill="none"/></svg>
+          </div>
+
+          <div class="flow-node">
+            <div class="flow-box">
+              <div class="flow-step">05</div>
+              <div class="flow-label">Arduino Reads A0 Pin</div>
+              <div class="flow-sub">averaged value</div>
+            </div>
+          </div>
+
+          <div class="flow-arrow">
+            <svg width="32" height="16" viewBox="0 0 32 16"><path d="M2 8 H28 M22 3 L28 8 L22 13" stroke="#555" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round" fill="none"/></svg>
+          </div>
+
+          <div class="flow-node">
+            <div class="flow-box">
+              <div class="flow-step">06</div>
+              <div class="flow-label">Pure Data Receives</div>
+              <div class="flow-sub">via serial comm</div>
+            </div>
+          </div>
+
+          <div class="flow-arrow">
+            <svg width="32" height="16" viewBox="0 0 32 16"><path d="M2 8 H28 M22 3 L28 8 L22 13" stroke="#555" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round" fill="none"/></svg>
+          </div>
+
+          <div class="flow-node">
+            <div class="flow-box" style="background:rgba(185,255,75,0.1);border-color:rgba(185,255,75,0.5);">
+              <div class="flow-step">07</div>
+              <div class="flow-label">Audio Phrase Plays</div>
+              <div class="flow-sub">WAV sequence</div>
+            </div>
+          </div>
+
+          <div class="flow-arrow">
+            <svg width="32" height="16" viewBox="0 0 32 16"><path d="M2 8 H28 M22 3 L28 8 L22 13" stroke="#b9ff4b" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round" fill="none"/></svg>
+          </div>
+
+          <div class="flow-node">
+            <div class="flow-box flow-box--start">
+              <div class="flow-step">08</div>
+              <div class="flow-label">Visitor Rearranges Again</div>
+              <div class="flow-sub">loop ↺</div>
+            </div>
+          </div>
+
+        </div>
+      </div>
+
+      <!-- ARDUINO CIRCUIT DIAGRAM -->
+      <img src="kaleido-circuit.png" alt="Arduino wiring guide showing voltage-divider circuit with breadboard and block stack" class="img-full" />
+      <p class="img-caption">Arduino Wiring Guide — breadboard voltage-divider circuit showing Block A (1kΩ), B (4.7kΩ), C (10kΩ), D (22kΩ) connected in series. A0 pin reads the voltage across the R_ref resistor.</p>
+    </div>
+
+    <!-- FABRICATION -->
+    <div class="case-section">
+      <h2>Fabrication & Iteration</h2>
+
+      <div class="stat-grid">
+        <div class="stat-card">
+          <div class="stat-num">3mm</div>
+          <div class="stat-lbl">MDF laser cut with finger joint construction — multiple kerf iterations before joints held reliably</div>
+        </div>
+        <div class="stat-card">
+          <div class="stat-num">4+</div>
+          <div class="stat-lbl">Module design iterations before stable copper contact readings were achieved across all arrangements</div>
+        </div>
+        <div class="stat-card">
+          <div class="stat-num">8</div>
+          <div class="stat-lbl">Possible contact orientations per hexagonal block — different R values = different voltage per orientation</div>
+        </div>
+        <div class="stat-card">
+          <div class="stat-num">24</div>
+          <div class="stat-lbl">Possible narrative sequences — same 4 dialogue fragments, endlessly recomposable</div>
+        </div>
+      </div>
+
+      <!-- TWO FABRICATION PHOTOS SIDE BY SIDE -->
+      <div class="img-grid-2">
+        <img src="kaleido-breadboard.jpg" alt="Arduino breadboard prototyping with resistors and jumper wires" />
+        <img src="kaleido-lasercut.jpg" alt="Laser-cut MDF octagonal pieces laid out on Epilog laser cutter bed" />
+      </div>
+      <p class="img-caption">Left: Arduino breadboard prototyping with resistor network testing. Right: Epilog laser cutter bed showing MDF hexagonal block pieces, panel faces and top/bottom caps.</p>
+
+      <!-- ISOMETRIC RENDER -->
+      <img src="kaleido-isometric.svg" alt="Isometric prototype render of the modular sculpture" class="img-full" style="background:var(--bg2);padding:24px;" />
+      <p class="img-caption">Prototype isometric render of the modular sculpture — showing block stack assembly and kaleidoscope top unit.</p>
+    </div>
+
+    <div class="case-section">
+      <h2>Narrative & Interaction Design</h2>
+      <p>The narrative was a deliberate design choice as much as the electronics were. A fictional police interview about a missing dog, the absence of dramatic content was intentional: it forces the audience to construct meaning from structure alone, not from the emotional charge of the subject matter.</p>
+      <p>Each of the four blocks carries one short audio fragment recorded in a natural conversational tone. The interaction is intentionally simple: approach the sculpture, rearrange the blocks, listen. As Ascott argued, interactive art replaces the passive spectator with an active participant — the audience member becomes the author of the narrative sequence they experience.</p>
+    </div>
+
+    <div class="case-section">
+      <h2>Key Design Decisions</h2>
+      <ul>
+        <li><strong style="color:var(--text)">Simplifying the interaction.</strong> Early versions explored more technically complex audio systems. Stripping these back to a single input — block arrangement → resistance → audio sequence — significantly improved both reliability and clarity.</li>
+        <li><strong style="color:var(--text)">Keeping the content constant, varying only the structure.</strong> The decision to never change the dialogue only its sequence was the conceptual heart of the project. It forces audiences to confront the fact that their interpretation is generated by structure, not content.</li>
+      </ul>
+    </div>
+
+    <div class="case-section">
+      <h2>Reflection & What I Learned</h2>
+      <p>This project was my first sustained experience working at the intersection of physical computing, sound design and conceptual interaction design. The most important realisation was the relationship between physical interaction and conceptual meaning — the sculpture's concept only works because the audience physically creates the structure. Reading about that idea is one thing. Being the person who rearranges the blocks and hears the story change is another.</p>
+      <div class="case-callout">"Fabrication is a form of ideation. Some of the best design decisions in this project were made during construction"</div>
+      
+    </div>
+
+    <!-- PROJECT NAV -->
+    <div style="border-top:1px solid var(--border);padding-top:48px;display:flex;justify-content:space-between;align-items:center;">
+      <a href="projects.html" style="font-size:13px;color:var(--text-dim);">← All projects</a>
+      <a href="case-study-pharmasight.html" style="font-size:13px;color:var(--text-dim);">Next: Pharmasight →</a>
+    </div>
+
+  </div>
+
+  <footer class="footer">
+    <span>SRUSHTI DHOBLEY © 2026</span>
+    <span>INTERACTION &amp; VISUAL DESIGNER</span>
+  </footer>
+  <script src="script.js"></script>
+</body>
+</html>

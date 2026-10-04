@@ -1,0 +1,269 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <title>Vortex · Srushti Dhobley</title>
+  <meta name="description" content="Vortex — Brand identity and multi-touchpoint digital design for a car modification platform. Case study by Srushti Dhobley." />
+  <link rel="preconnect" href="https://fonts.googleapis.com" />
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
+  <link href="https://fonts.googleapis.com/css2?family=Inter:wght@300;400;500;600&family=Fraunces:ital,opsz,wght@0,9..144,300;0,9..144,400;1,9..144,300;1,9..144,400&display=swap" rel="stylesheet" />
+  <link rel="stylesheet" href="style.css" />
+  <style>
+    /* ── SCREEN BLOCKS (same as pharmasight) ── */
+    .screen-block { margin-bottom: 52px; }
+    .screen-tag { font-size:10px; font-weight:700; letter-spacing:0.12em; text-transform:uppercase; color:var(--accent); margin-bottom:12px; }
+    .screen-link { display:block; position:relative; border-radius:var(--radius-lg); overflow:hidden; border:1px solid var(--border); cursor:pointer; text-decoration:none; }
+    .screen-link:hover .screen-zoom { opacity:1; }
+    .screen-link:hover .screen-img { filter:brightness(0.88); }
+    .screen-img { width:100%; display:block; transition:filter 0.2s; }
+    .screen-zoom { position:absolute; bottom:16px; right:16px; background:rgba(0,0,0,0.75); color:#fff; font-size:12px; font-weight:500; padding:6px 14px; border-radius:100px; opacity:0; transition:opacity 0.2s; backdrop-filter:blur(8px); letter-spacing:0.04em; }
+    .screen-desc { font-size:15px; color:var(--text-dim); margin-top:12px; line-height:1.65; }
+
+    /* ── STAT CHIPS ── */
+    .chip-row { display:flex; flex-wrap:wrap; gap:10px; margin:24px 0; }
+    .chip { background:var(--bg2); border:1px solid var(--border); border-radius:100px; padding:8px 18px; font-size:13px; color:var(--text-dim); display:flex; align-items:center; gap:8px; }
+    .chip-dot { width:6px; height:6px; border-radius:50%; background:var(--accent); flex-shrink:0; }
+
+    /* ── 3-COLUMN TOUCHPOINT GRID ── */
+    .touchpoint-grid { display:grid; grid-template-columns:repeat(3,1fr); gap:12px; margin:28px 0; }
+    .touchpoint-card { background:var(--bg2); border:1px solid var(--border); border-radius:var(--radius-lg); padding:24px 20px; }
+    .tp-num { font-family:var(--ff-display); font-size:36px; font-weight:300; color:var(--accent); line-height:1; margin-bottom:10px; }
+    .tp-title { font-size:14px; font-weight:500; color:var(--text); margin-bottom:6px; }
+    .tp-desc { font-size:12px; color:var(--text-dim); line-height:1.6; }
+
+    /* ── DESIGN DECISION CARDS ── */
+    .decision-stack { display:flex; flex-direction:column; gap:14px; margin:24px 0; }
+    .decision-card { background:var(--bg2); border:1px solid var(--border); border-radius:var(--radius-lg); padding:22px 24px; display:grid; grid-template-columns:auto 1fr; gap:16px; align-items:start; }
+    .decision-icon { font-size:20px; padding-top:2px; }
+    .decision-title { font-size:14px; font-weight:500; color:var(--text); margin-bottom:6px; }
+    .decision-body { font-size:13px; color:var(--text-dim); line-height:1.65; }
+
+    @media(max-width:720px){
+      .touchpoint-grid { grid-template-columns:1fr; }
+      .decision-card { grid-template-columns:1fr; }
+    }
+  </style>
+</head>
+<body>
+
+  <nav class="nav" id="nav">
+    <a href="index.html" class="nav-logo"><img src="logo.jpg" alt="Srushti Logo" style="height:40px;width:auto;display:block;" /></a>
+    <div class="nav-links">
+      <a href="projects.html">Projects</a>
+      <a href="about.html">About Me</a>
+      <a href="index.html#contact">Let's Connect</a>
+      <a href="Srushti_Dhobley_Resume.pdf" class="nav-cta" download>Download CV</a>
+    </div>
+    <button class="nav-burger" id="burger" aria-label="menu"><span></span><span></span></button>
+  </nav>
+  <div class="nav-mobile" id="navMobile">
+    <a href="projects.html">Projects</a>
+    <a href="about.html">About Me</a>
+    <a href="index.html#contact">Let's Connect</a>
+    <a href="Srushti_Dhobley_Resume.pdf" download>Download CV</a>
+  </div>
+
+  <!-- HERO -->
+  <div class="case-hero">
+    <a href="projects.html" style="font-size:13px;color:var(--text-dim);display:inline-flex;align-items:center;gap:6px;margin-bottom:32px;">← Back to projects</a>
+    <div class="project-tags">
+      <span class="tag">B2C</span>
+      <span class="tag">Brand Identity</span>
+      <span class="tag">UX/UI Design</span>
+      <span class="tag">Metaverse</span>
+    </div>
+    <h1>Vortex — Unified 3 Touchpoints for a Car Modification Brand into One Coherent Digital Experience</h1>
+    <div class="case-meta-grid">
+      <div class="case-meta-item"><span class="case-meta-label">My Role</span><span class="case-meta-value">Brand & UI Designer</span></div>
+      <div class="case-meta-item"><span class="case-meta-label">Duration</span><span class="case-meta-value">2 weeks</span></div>
+      <div class="case-meta-item"><span class="case-meta-label">Tools</span><span class="case-meta-value">Figma · Adobe CC · Blender</span></div>
+      
+    </div>
+  </div>
+
+  <!-- COVER -->
+  <div style="max-width:1000px;margin:0 auto;padding:0 48px 60px;">
+    <a href="vortex-cover.jpg" target="_blank" class="screen-link" title="Open full size">
+      <img src="vortex-cover.jpg" alt="Vortex — car modification brand with modified Porsche 911 and VORTEX wordmark on dark background" class="screen-img" style="max-height:520px;object-fit:cover;object-position:center;" />
+      <div class="screen-zoom">↗ Open full size</div>
+    </a>
+  </div>
+
+  <div class="case-body">
+
+    <!-- 1. PROBLEM -->
+    <div class="case-section">
+      <h2>The Problem</h2>
+      <p>Vortex is a car modification brand operating across three separate customer touchpoints a website, a catalogue and a metaverse showroom. Each had been built independently, resulting in disconnected visual languages, inconsistent brand expression and a fragmented customer journey that undermined the premium positioning the brand was trying to establish.</p>
+      <p>Car modification is a deeply identity driven industry. Customers aren't just buying parts they're expressing who they are through their vehicles. A brand whose own identity is incoherent cannot credibly serve that aspiration.</p>
+
+      <div class="chip-row">
+        <div class="chip"><span class="chip-dot"></span>3 disconnected touchpoints</div>
+        <div class="chip"><span class="chip-dot"></span>No unified visual language</div>
+        <div class="chip"><span class="chip-dot"></span>Fragmented customer journey</div>
+        <div class="chip"><span class="chip-dot"></span>Premium positioning undercut by inconsistency</div>
+      </div>
+    </div>
+
+    <!-- 2. BRIEF -->
+    <div class="case-section">
+      <h2>The Brief — One Brand, Three Touchpoints</h2>
+      <p>The challenge was to create a single coherent design system that could be expressed differently across three very different contexts while remaining unmistakably Vortex.</p>
+      <div class="case-callout">"A brand is not a logo. It is a consistent set of decisions that customers encounter across every interaction. Vortex needed those decisions to be made once and expressed everywhere."</div>
+
+      <div class="touchpoint-grid">
+        <div class="touchpoint-card">
+          <div class="tp-num">01</div>
+          <div class="tp-title">Website</div>
+          <div class="tp-desc">The primary informational and discovery touchpoint hero experience, services, community, catalogue navigation. Needs to communicate premium positioning in the first scroll.</div>
+        </div>
+        <div class="touchpoint-card">
+          <div class="tp-num">02</div>
+          <div class="tp-title">Catalogue</div>
+          <div class="tp-desc">Transactional layer — merchandise, 3D models, virtual modifications. Needs brand consistency while supporting product browsing and purchase intent.</div>
+        </div>
+        <div class="touchpoint-card">
+          <div class="tp-num">03</div>
+          <div class="tp-title">Metaverse Showroom</div>
+          <div class="tp-desc">Immersive 3D environment (Meta VOR-TEX) where customers experience car modifications spatially before committing to physical work. Most forward looking touchpoint.</div>
+        </div>
+      </div>
+    </div>
+
+    <!-- 3. BRAND IDENTITY -->
+    <div class="case-section">
+      <h2>Brand Identity System</h2>
+      <p>The Vortex identity was built around the concept of controlled power the visual tension between precision engineering and raw performance that defines great car modification. The logo mark evolved through several iterations to achieve a form that reads as both aerodynamic and authoritative: a sharp downward pointing V form with angular wing elements, referencing both speed and structural strength.</p>
+      <p>The dark colour system near blacks with sharp accent lines was to reflect both the workshop environment where modification happens and the showroom context where results are revealed. The mark works equally across dark and light backgrounds with no loss of impact.</p>
+
+      <div class="screen-block">
+        <div class="screen-tag">Brand Identity — Logo System</div>
+        
+           <a href="vortex-website.png" target="_blank" class="screen-link" title="Click to open full size">
+          <img src="vortex-website.png" alt="Vortex website homepage showing hero with modified Mercedes, About section, Services and More with four service pillars, community join section and footer" class="screen-img" />
+          <div class="screen-zoom">↗ Open full size</div>
+        </a>
+        <p class="screen-desc">Full logo system mark on white, reversed on black, standalone wordmark at display scale and application contexts. The angular V-form with wing geometry references aerodynamic design while reading immediately at small sizes.</p>
+      </div>
+    </div>
+
+    <!-- 4. WEBSITE -->
+    <div class="case-section">
+      <h2>Website Design — "Where Innovation Meets the Fast Lane"</h2>
+      <p>The website serves as Vortex's primary informational and community touchpoint. The hero experience communicates premium positioning immediately — a dramatically lit modified car against a cinematic cityscape, with the tagline "Amplify Your Drive / Where Innovation Meets the Fast Lane" establishing the brand's aspirational tone.</p>
+      <p>The information architecture separates two user modes without creating two separate experiences: enthusiasts who want technical depth and community connection and new visitors who need orientation before they can engage with the catalogue or metaverse.</p>
+
+      <div class="screen-block">
+        <div class="screen-tag">Website — Homepage & Concept Page</div>
+        <a href="vortex-catalogue.png" target="_blank" class="screen-link" title="Click to open full size">
+          <img src="vortex-catalogue.png" alt="Vortex catalogue page showing merchandise t-shirts with pricing, 3D model car renders for purchase, and virtual modification CTA section" class="screen-img" />
+          <div class="screen-zoom">↗ Open full size</div>
+        </a>
+      
+        <p class="screen-desc">Homepage — hero banner "Where Innovation Meets the Fast Lane", About VORTEX section positioning the platform as a comprehensive customisation ecosystem, four service pillars (Instant Customisation, Enthusiast Hub, Extravagant Events, Value Enhancement), community email capture and full navigation footer.</p>
+      </div>
+    </div>
+
+    <!-- 5. CATALOGUE -->
+    <div class="case-section">
+      <h2>Catalogue — Merchandise & 3D Models</h2>
+      <p>The catalogue touchpoint handles the transactional layer of the brand — where enthusiasm converts into purchase. The design challenge was maintaining visual richness (dark backgrounds, dramatic car imagery) while still being scannable and shoppable. The catalogue navigation (Concept · Events · Catalogue · Community) mirrors the website, giving the user a sense of continuous spatial movement through the same brand rather than jumping between disconnected pages.</p>
+
+      <div class="screen-block">
+        <div class="screen-tag">Catalogue — Merchandise & 3D Model Listings</div>
+         <a href="vortex-logo.png" target="_blank" class="screen-link" title="Click to open full size">
+          <img src="vortex-logo.png" alt="Vortex logo system showing mark on white background, reversed on black, and standalone wordmark variations" class="screen-img" />
+          <div class="screen-zoom">↗ Open full size</div>
+        </a>
+      
+        <p class="screen-desc">Catalogue page — merchandise (branded t-shirts, ₹2,999 / ₹7,000 save ₹5,000), 3D car model listings (₹11,999–₹67,999), virtual modification experience CTA "Get hands-on virtual modification Experience", and community channel sign-up. Consistent dark system maintains brand integrity through the transactional layer.</p>
+      </div>
+    </div>
+
+    <!-- 6. 3D MODELS -->
+    <div class="case-section">
+      <h2>3D Modelling — From Wireframe to Render</h2>
+      <p>Supporting the virtual modification experience required building actual 3D assets. I modelled and rendered car variants showing the full progression from grey wireframe model to final textured render — demonstrating how a vehicle transforms through the Vortex modification process. The renders show both closed and convertible configurations, and the colour range customers can select (matte black, metallic black, gold/yellow).</p>
+
+      <div class="screen-block">
+        <div class="screen-tag">3D Models — Wireframe to Final Render</div>
+        <a href="vortex-3d.png" target="_blank" class="screen-link" title="Click to open full size">
+          <img src="vortex-3d.png" alt="3D car models showing progression from grey wireframe models in Blender to final dark metallic and gold rendered versions" class="screen-img" />
+          <div class="screen-zoom">↗ Open full size</div>
+        </a>
+        <p class="screen-desc">3D model progression — grey mesh wireframe (top row), high-fidelity render in matte black with orange accent lines (middle row) and final textured gold/yellow convertible variants (bottom row). Built to populate the catalogue and provide the metaverse showroom with interactive vehicle assets.</p>
+      </div>
+    </div>
+
+    <!-- 7. METAVERSE -->
+    <div class="case-section">
+      <h2>MetaVOR-TEX — Immersive Spatial Showroom</h2>
+      <p>The third touchpoint pushes beyond screen design into spatial experience. The MetaVOR-TEX is a 3D navigable environment where customers can walk through a virtual showroom, see modified vehicles at scale and experience the brand atmosphere before making a physical modification commitment. This addresses the single biggest barrier in car modification: the difficulty of visualising what your vehicle will actually look like before spending significant money on it.</p>
+      <p>Navigation follows standard spatial controls (WASD to move, Shift to run, Spacebar to jump), making the experience accessible to anyone familiar with games. The Vortex logo and brand elements appear on virtual screens and in the space's architecture. </p>
+
+      <div class="screen-block">
+        <div class="screen-tag">MetaVOR-TEX — Immersive 3D Showroom</div>
+        <a href="vortex-metaverse.png" target="_blank" class="screen-link" title="Click to open full size">
+          <img src="vortex-metaverse.png" alt="Meta VOR-TEX metaverse showroom showing user avatar entering the space, Vortex branding on virtual screens, and car displayed on central platform with spatial navigation controls" class="screen-img" />
+          <div class="screen-zoom">↗ Open full size</div>
+        </a>
+        <p class="screen-desc">Meta VOR-TEX — WASD spatial navigation, user avatar (Jan Weave) entering the showroom, Vortex logo on virtual screens, car displayed on central showroom platform with dramatic lighting. The spatial environment extends the brand's "Amplify Your Drive" positioning into an immersive pre-purchase experience.</p>
+      </div>
+    </div>
+
+    <!-- 8. DESIGN DECISIONS -->
+    <div class="case-section">
+      <h2>Key Design Decisions</h2>
+      <div class="decision-stack">
+
+        <div class="decision-card">
+          <div class="decision-icon">🎯</div>
+          <div>
+            <div class="decision-title">Dark system across all touchpoints</div>
+            <div class="decision-body">Near black backgrounds were chosen to mirror both the workshop aesthetic (where modification happens) and the showroom aesthetic (where results are presented). A light or neutral system would have undermined the premium, performance driven positioning. The consistency of the dark system across website, catalogue and metaverse creates a sense of entering the same brand world regardless of entry point.</div>
+          </div>
+        </div>
+
+        <div class="decision-card">
+          <div class="decision-icon">✦</div>
+          <div>
+            <div class="decision-title">The logo mark as a structural principle</div>
+            <div class="decision-body">The angular V-form of the Vortex mark appears as a structural element throughout the design. In the metaverse showroom's architectural geometry, in the chevron like navigation elements on the website and in the car's orange accent stripe in the cover image.</div>
+          </div>
+        </div>
+
+        <div class="decision-card">
+          <div class="decision-icon">🌐</div>
+          <div>
+            <div class="decision-title">The metaverse as a design problem </div>
+            <div class="decision-body">The MetaVOR-TEX could have been positioned as a technology showcase. Instead, it was designed as a customer experience solution reducing the anxiety of committing to a high ticket modification without being able to visualise the outcome. The spatial controls were kept deliberately familiar (game-standard WASD) to lower the access barrier. The brand appears in the architecture rather than as overlaid UI, making the space feel like a place to experiment.</div>
+          </div>
+        </div>
+
+      </div>
+    </div>
+
+    <!-- 9. OUTCOME -->
+    <div class="case-section">
+      <h2>Outcome & Reflection</h2>
+      <p>Working across three very different design contexts — 2D web, transactional catalogue and 3D spatial design in a single project significantly broadened my understanding of how design systems need to be flexible enough to translate across media while maintaining identity integrity.</p>
+      <p>The Vortex project demonstrated that brand coherence is not an aesthetic luxury but a functional requirement. Customers who encounter a brand consistently across touchpoints are more likely to trust it with high value, high involvement decisions and car modification is exactly that kind of decision.</p>
+      
+    </div>
+
+    <!-- PROJECT NAV -->
+    <div style="border-top:1px solid var(--border);padding-top:48px;display:flex;justify-content:space-between;align-items:center;">
+      <a href="case-study-pharmasight.html" style="font-size:13px;color:var(--text-dim);">← Pharmasight</a>
+      <a href="case-study-barnhouse.html" style="font-size:13px;color:var(--text-dim);">Next: The Barn House →</a>
+    </div>
+
+  </div>
+
+  <footer class="footer">
+    <span>SRUSHTI DHOBLEY © 2026</span>
+    <span>INTERACTION &amp; VISUAL DESIGNER</span>
+  </footer>
+  <script src="script.js"></script>
+</body>
+</html>

@@ -1,0 +1,513 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <title>The Barn House · Srushti Dhobley</title>
+  <meta name="description" content="The Barn House — Brand identity and UX design for a holistic wellness platform focused on mindful eating for urban women. Case study by Srushti Dhobley." />
+  <link rel="preconnect" href="https://fonts.googleapis.com" />
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
+  <link href="https://fonts.googleapis.com/css2?family=Inter:wght@300;400;500;600&family=Fraunces:ital,opsz,wght@0,9..144,300;0,9..144,400;1,9..144,300;1,9..144,400&display=swap" rel="stylesheet" />
+  <link rel="stylesheet" href="style.css" />
+  <style>
+    /* ── SCREEN BLOCKS ── */
+    .screen-block{margin-bottom:52px}
+    .screen-tag{font-size:10px;font-weight:700;letter-spacing:0.12em;text-transform:uppercase;color:var(--accent);margin-bottom:12px}
+    .screen-link{display:block;position:relative;border-radius:var(--radius-lg);overflow:hidden;border:1px solid var(--border);cursor:pointer;text-decoration:none}
+    .screen-link:hover .screen-zoom{opacity:1}
+    .screen-link:hover .screen-img{filter:brightness(0.88)}
+    .screen-img{width:100%;display:block;transition:filter 0.2s;object-fit:contain;background:#faf8f5}
+    /* Wireframes are portrait phone screenshots — same height as 2-col phone grid */
+    .wireframe-grid .mobile-item a{height:560px}
+    .wireframe-grid .mobile-item img{height:560px;object-fit:contain;object-position:top center;background:#fff}
+    .screen-zoom{position:absolute;bottom:16px;right:16px;background:rgba(0,0,0,0.75);color:#fff;font-size:12px;font-weight:500;padding:6px 14px;border-radius:100px;opacity:0;transition:opacity 0.2s;backdrop-filter:blur(8px);letter-spacing:0.04em}
+    .screen-desc{font-size:15px;color:var(--text-dim);margin-top:12px;line-height:1.65}
+
+    /* ── MOBILE SCREEN GRID ── */
+    .mobile-grid{display:grid;gap:14px;margin:28px 0}
+    .mobile-grid--2{grid-template-columns:repeat(2,1fr)}
+    .mobile-grid--3{grid-template-columns:repeat(3,1fr)}
+    .mobile-grid--4{grid-template-columns:repeat(4,1fr)}
+    /* Each cell: fixed height so images are fully visible without clicking */
+    .mobile-item{display:flex;flex-direction:column}
+    .mobile-item a{display:block;position:relative;border-radius:var(--radius);overflow:hidden;border:1px solid var(--border);text-decoration:none;flex:1}
+    .mobile-item a:hover img{filter:brightness(0.88)}
+    .mobile-item img{width:100%;display:block;transition:filter 0.2s}
+    /* 4-col: narrow cards — taller to show full portrait screen */
+    .mobile-grid--4 .mobile-item a{height:420px}
+    .mobile-grid--4 .mobile-item img{height:420px;object-fit:contain;object-position:top center;background:#faf8f5}
+    /* 3-col: medium cards */
+    .mobile-grid--3 .mobile-item a{height:480px}
+    .mobile-grid--3 .mobile-item img{height:480px;object-fit:contain;object-position:top center;background:#faf8f5}
+    /* 2-col: wide cards — shorter since screens are wider */
+    .mobile-grid--2 .mobile-item a{height:560px}
+    .mobile-grid--2 .mobile-item img{height:560px;object-fit:contain;object-position:top center;background:#faf8f5}
+    .mobile-item .mz{position:absolute;bottom:8px;right:8px;background:rgba(0,0,0,0.7);color:#fff;font-size:10px;padding:3px 10px;border-radius:100px;opacity:0;transition:opacity 0.2s}
+    .mobile-label{font-size:11px;color:var(--text-dim);text-align:center;margin-top:8px;line-height:1.4}
+
+    /* ── PERSONA STRIP ── */
+    .persona-strip{border-radius:var(--radius-lg);overflow:hidden;border:1px solid var(--border);margin-bottom:14px}
+    .persona-h{display:grid;grid-template-columns:200px 1fr 1fr;border-bottom:1px solid var(--border)}
+    .persona-id{background:var(--bg3);padding:28px 22px;display:flex;flex-direction:column;gap:8px;border-right:1px solid var(--border)}
+    .persona-badge{font-size:9px;font-weight:700;letter-spacing:0.14em;text-transform:uppercase;color:var(--accent)}
+    .persona-nm{font-size:16px;font-weight:500;color:var(--text)}
+    .persona-role-txt{font-size:12px;color:var(--text-dim);line-height:1.5}
+    .persona-col{padding:24px 20px;border-right:1px solid var(--border)}
+    .persona-col:last-child{border-right:none}
+    .persona-col-title{font-size:10px;font-weight:700;letter-spacing:0.1em;text-transform:uppercase;color:var(--text-faint);margin-bottom:12px}
+    .persona-col ul{list-style:none;padding:0;display:flex;flex-direction:column;gap:8px}
+    .persona-col li{font-size:12px;color:var(--text-dim);line-height:1.5;padding-left:12px;position:relative}
+    .persona-col li::before{content:'';position:absolute;left:0;top:8px;width:4px;height:4px;border-radius:50%;background:var(--border)}
+    .persona-quote-strip{padding:14px 22px;background:var(--bg2);display:flex;align-items:center;gap:14px}
+    .qs{font-size:11px;color:var(--text-dim);flex-shrink:0;font-weight:500}
+    .persona-quote-strip p{font-family:var(--ff-display);font-size:14px;font-style:italic;color:var(--text);line-height:1.5}
+
+    /* ── CHALLENGE GRID ── */
+    .challenge-grid{display:grid;grid-template-columns:repeat(3,1fr);gap:12px;margin:24px 0}
+    .challenge-card{background:var(--bg2);border:1px solid var(--border);border-radius:var(--radius);padding:18px 16px}
+    .challenge-icon{font-size:20px;margin-bottom:10px;display:block}
+    .challenge-title{font-size:13px;font-weight:500;color:var(--text);margin-bottom:6px}
+    .challenge-desc{font-size:12px;color:var(--text-dim);line-height:1.55}
+
+    /* ── VALUE PROP GRID ── */
+    .value-grid{display:grid;grid-template-columns:repeat(3,1fr);gap:12px;margin:24px 0}
+    .value-card{background:var(--bg2);border:1px solid var(--border);border-radius:var(--radius);padding:18px 16px;text-align:center}
+    .value-icon{font-size:22px;margin-bottom:10px;display:block}
+    .value-title{font-size:13px;font-weight:500;color:var(--text);margin-bottom:4px}
+    .value-desc{font-size:12px;color:var(--text-dim);line-height:1.55}
+
+    /* ── COLOUR PALETTE ── */
+    .palette{display:flex;gap:12px;margin:20px 0;flex-wrap:wrap}
+    .swatch{border-radius:var(--radius);overflow:hidden;width:80px}
+    .swatch-color{height:56px;width:100%}
+    .swatch-label{font-size:10px;color:var(--text-dim);text-align:center;padding:4px 0;background:var(--bg2);border:1px solid var(--border);border-top:none}
+
+    @media(max-width:800px){
+      .persona-h{grid-template-columns:1fr}
+      .persona-id,.persona-col{border-right:none;border-bottom:1px solid var(--border)}
+      .mobile-grid--3,.mobile-grid--4{grid-template-columns:1fr 1fr}
+      .challenge-grid,.value-grid{grid-template-columns:1fr}
+    }
+  </style>
+</head>
+<body>
+
+  <nav class="nav" id="nav">
+    <a href="index.html" class="nav-logo"><img src="logo.jpg" alt="Srushti Logo" style="height:40px;width:auto;display:block;" /></a>
+    <div class="nav-links">
+      <a href="projects.html">Projects</a>
+      <a href="about.html">About Me</a>
+      <a href="index.html#contact">Let's Connect</a>
+      <a href="Srushti_Dhobley_Resume.pdf" class="nav-cta" download>Download CV</a>
+    </div>
+    <button class="nav-burger" id="burger" aria-label="menu"><span></span><span></span></button>
+  </nav>
+  <div class="nav-mobile" id="navMobile">
+    <a href="projects.html">Projects</a>
+    <a href="about.html">About Me</a>
+    <a href="index.html#contact">Let's Connect</a>
+    <a href="Srushti_Dhobley_Resume.pdf" download>Download CV</a>
+  </div>
+
+  <!-- HERO -->
+  <div class="case-hero">
+    <a href="projects.html" style="font-size:13px;color:var(--text-dim);display:inline-flex;align-items:center;gap:6px;margin-bottom:32px;">← Back to projects</a>
+    <div class="project-tags">
+      <span class="tag">Brand Identity</span>
+      <span class="tag">UX/UI Design</span>
+      <span class="tag">Mobile App</span>
+      
+    </div>
+    <h1>The Barn House — Brand Identity & Holistic Wellness App for Mindful Eating Among Urban Women</h1>
+    <div class="case-meta-grid">
+      <div class="case-meta-item"><span class="case-meta-label">My Role</span><span class="case-meta-value">Brand Designer & UX/UI Designer</span></div>
+      <div class="case-meta-item"><span class="case-meta-label">Duration</span><span class="case-meta-value">5 weeks</span></div>
+      <div class="case-meta-item"><span class="case-meta-label">Tools</span><span class="case-meta-value">Figma · Adobe CC · Miro</span></div>
+      
+    </div>
+  </div>
+
+  <!-- COVER IMAGE -->
+  <div style="max-width:1000px;margin:0 auto;padding:0 48px 60px;">
+    <div style="border-radius:var(--radius-lg);overflow:hidden;border:1px solid var(--border);">
+      <img src="barn-house-cover.jpg" alt="The Barn House brand identity and wellness app cover" style="width:100%;display:block;max-height:520px;object-fit:cover;object-position:center center;" />
+    </div>
+  </div>
+
+  <div class="case-body">
+
+    <!-- 1. BRIEF -->
+    <div class="case-section">
+      <h2>The Brief</h2>
+      <p>The Barn House is a Bangalore-based rejuvenation centre seeking to build a brand identity focused on holistic well-being for individuals aged 21–52 — particularly urban professionals dealing with stress. They emphasise integration of physical, mental and spiritual health. The identity needed to reflect serenity, balance and rejuvenation through warm, inviting, and trustworthy visuals.</p>
+      <p>The project had two layers: first, develop the Barn House brand identity (the superset). Second, design an online platform — a mindful eating and meal-planning app — as its digital product expression (the subset).</p>
+    </div>
+
+    <!-- 2. RESEARCH -->
+    <div class="case-section">
+      <h2>Research — The Problem with How We Eat</h2>
+      <p>60% of working women aged 21–52 struggle to prioritise healthy eating due to hectic schedules, sedentary lifestyles, limited cooking skills, decision fatigue, and a market saturated with generalised solutions that don't address their personalised nutritional needs.</p>
+      <p>Research mapped the mindful eating ecosystem — benefits, challenges, current behaviours, and gaps in existing solutions — through primary research and competitive analysis.</p>
+
+      <div class="screen-block">
+        <div class="screen-tag">Research — Mindful Eating Mind Map</div>
+        <a href="bh-mindmap.jpg" target="_blank" class="screen-link" title="Click to open full size">
+          <img src="bh-mindmap.jpg" alt="Mind map showing benefits and challenges of mindful eating practice for urban women" class="screen-img" />
+          <div class="screen-zoom">↗ Open full size</div>
+        </a>
+        <p class="screen-desc">Mindful eating mind map — mapping benefits (mental wellbeing, physical wellbeing, stress reduction, weight management, balanced nutrition) against challenges (busy schedules, limited access to healthy food, emotional eating, sedentary lifestyle, self-care barriers).</p>
+      </div>
+
+      <div class="challenge-grid">
+        <div class="challenge-card"><span class="challenge-icon">⏰</span><div class="challenge-title">Lack of time & inconsistent schedule</div><div class="challenge-desc">Leaves little room for meal planning and cooking, leading to impulsive food choices.</div></div>
+        <div class="challenge-card"><span class="challenge-icon">🍳</span><div class="challenge-title">Limited cooking skills</div><div class="challenge-desc">Many women don't feel confident enough to prepare nutritious meals consistently.</div></div>
+        <div class="challenge-card"><span class="challenge-icon">💸</span><div class="challenge-title">Affordability</div><div class="challenge-desc">Real struggle to find budget-friendly, personalised options that are also convenient.</div></div>
+        <div class="challenge-card"><span class="challenge-icon">😵</span><div class="challenge-title">Decision fatigue</div><div class="challenge-desc">Feeling overwhelmed by constantly deciding what to eat and navigating nutritional value.</div></div>
+        <div class="challenge-card"><span class="challenge-icon">🍔</span><div class="challenge-title">Unhealthy choices</div><div class="challenge-desc">Time constraints lead to unhealthy fast food and takeout, reinforcing poor eating patterns.</div></div>
+        <div class="challenge-card"><span class="challenge-icon">🤷</span><div class="challenge-title">Generalised solutions</div><div class="challenge-desc">Existing apps don't focus on fulfilling personalised nutritional need.</div></div>
+      </div>
+    </div>
+
+    <!-- 3. PERSONAS -->
+    <div class="case-section">
+      <h2>User Personas</h2>
+      <p>Two primary personas emerged from research — both urban women navigating demanding schedules with different food challenges and goals.</p>
+
+      <div class="persona-strip">
+        <div class="persona-h">
+          <div class="persona-id">
+            <div class="persona-badge">Persona 01</div>
+            <span style="font-size:24px;">👩‍💻</span>
+            <div class="persona-nm">Anuja Rao</div>
+            <div class="persona-role-txt">Age 26 · Software Engineer at a tech company · Recently relocated to the city</div>
+          </div>
+          <div class="persona-col">
+            <div class="persona-col-title">Context & Lifestyle</div>
+            <ul>
+              <li>Working on demanding city career — always rushed</li>
+              <li>Struggles to find time and energy to plan meals and grocery shop</li>
+              <li>Often starts the week with good intentions but loses track by Wednesday</li>
+              <li>Values nutritious meals but doesn't know where to start</li>
+            </ul>
+          </div>
+          <div class="persona-col">
+            <div class="persona-col-title">Goals</div>
+            <ul>
+              <li>Convenient Meal Solutions</li>
+              <li>Time Saving in Stages</li>
+              <li>Buying fewer processed foods</li>
+              <li>Budget-Friendly Choices</li>
+              <li>Fewer personalised nutrition needs</li>
+            </ul>
+          </div>
+        </div>
+        <div class="persona-quote-strip">
+          <span class="qs">Her words →</span>
+          <p>"I want to eat better but I just don't have the time to research what's right for me and then actually cook it every evening."</p>
+        </div>
+      </div>
+
+      <div class="persona-strip">
+        <div class="persona-h">
+          <div class="persona-id">
+            <div class="persona-badge">Persona 02</div>
+            <span style="font-size:24px;">👩‍💼</span>
+            <div class="persona-nm">Priya Verma</div>
+            <div class="persona-role-txt">Age 32 · Financial Analyst · Married with husband and teenage daughter</div>
+          </div>
+          <div class="persona-col">
+            <div class="persona-col-title">Context & Lifestyle</div>
+            <ul>
+              <li>Day starts early with quick workout, followed by breakfast and lunch prep</li>
+              <li>Often skips breakfast or orders takeout due to time constraints</li>
+              <li>Committed to family's health but struggles to find time</li>
+              <li>Values nutritious meals but often ends up ordering due to time constraints</li>
+            </ul>
+          </div>
+          <div class="persona-col">
+            <div class="persona-col-title">Goals</div>
+            <ul>
+              <li>Family Nutrition Balance</li>
+              <li>Personal Health</li>
+              <li>Efficient Meal Planning</li>
+              <li>Budget Management</li>
+              <li>Balancing family needs with own wellbeing</li>
+            </ul>
+          </div>
+        </div>
+        <div class="persona-quote-strip">
+          <span class="qs">Her words →</span>
+          <p>"I end up ordering food most evenings even though I know it's not the best choice — I just need something easy that's also actually good for me and my family."</p>
+        </div>
+      </div>
+    </div>
+
+    <!-- 4. BRAND IDENTITY -->
+    <div class="case-section">
+      <h2>Brand Identity — Conscious Living Through Design</h2>
+      <p>The Barn House brand needed to communicate holistic wellness without the clinical coldness of healthcare or the overwhelming visual noise of typical fitness brands. The chosen direction — Concept 4 — draws on the yoga mountain pose (a salutation posture that evokes balance between body and mind), combined with elements of nourishment (leaves) encapsulated in an organic form.</p>
+
+      <div class="screen-block">
+        <div class="screen-tag">Brand Concept — Logo Direction</div>
+        <a href="bh-logo-concept.png" target="_blank" class="screen-link" title="Click to open full size">
+          <img src="bh-logo-concept.png" alt="Barn House Final Concept 4 — conscious living through yoga mountain pose, brand keywords, moodboard and colour palette" class="screen-img" style="background:#fff;object-fit:contain;max-height:480px;" />
+          <div class="screen-zoom">↗ Open full size</div>
+        </a>
+        <p class="screen-desc">Final logo concept — the idea of conscious living through a sitting mountain pose (yoga) which is also a salutation, evoking balance with your body and mind. Elements of nourishment (leaves) are encapsulated in an organic form to make it one whole entity. Brand keywords: Conscious · Wellbeing · Balance · Wholesome · Nourishment · Organic.</p>
+      </div>
+
+      <!-- Colour palette -->
+      <p style="font-size:13px;color:var(--text-dim);margin-bottom:4px;">Brand colour system — warm earth tones chosen to reflect warmth, trustworthiness, and natural nourishment:</p>
+      <div class="palette">
+        <div class="swatch"><div class="swatch-color" style="background:#A16144;"></div><div class="swatch-label">#A16144<br/>Earth</div></div>
+        <div class="swatch"><div class="swatch-color" style="background:#EAB07C;"></div><div class="swatch-label">#EAB07C<br/>Warm Amber</div></div>
+        <div class="swatch"><div class="swatch-color" style="background:#FCDEB0;"></div><div class="swatch-label">#FCDEB0<br/>Cream</div></div>
+        <div class="swatch"><div class="swatch-color" style="background:#FFF6E8;"></div><div class="swatch-label">#FFF6E8<br/>Ivory</div></div>
+      </div>
+      <p class="screen-desc" style="margin-top:0;">Typography: Manrope Medium 20pt (headings) · Manrope Regular 18pt (body) · Manrope Light 12pt–10pt (captions). Radius: 8pt throughout. The warm earth palette communicates the approachable, organic, and nurturing quality of The Barn House philosophy.</p>
+    </div>
+
+    <!-- 5. USER FLOW & IA -->
+    <div class="case-section">
+      <h2>Information Architecture & User Flow</h2>
+      <p>The app is structured around five core areas: Meal Planning, Featured Library, Home (discovery), Community, and Profile. The flow from login through onboarding → preferences → personalised home → meal plan → cooking → community forms one continuous wellness journey rather than a collection of disconnected features.</p>
+
+      <div class="screen-block">
+        <div class="screen-tag">Information Architecture — Full App Map</div>
+        <a href="bh-ia.png" target="_blank" class="screen-link" title="Click to open full size">
+          <img src="bh-ia.png" alt="Information architecture map showing home screen, meal planning tools, account, community and all sub-flows" class="screen-img" style="background:#fff;" />
+          <div class="screen-zoom">↗ Open full size</div>
+        </a>
+        <p class="screen-desc">Full information architecture — Homescreen branches into Meal Planning Tools (menstrual/follicular/ovulation phases, difficulty, cooking time, category, pre-planned recipes), Account management, and Supportive Community. Automatic grocery list generation and points/gamification flow from completed meal plans.</p>
+      </div>
+
+      <div class="screen-block">
+        <div class="screen-tag">User Flow — Login to Cooking to Community</div>
+        <a href="bh-userflow.png" target="_blank" class="screen-link" title="Click to open full size">
+          <img src="bh-userflow.png" alt="User flow diagram from new user registration through onboarding, home, meal planning, cooking, and community" class="screen-img" style="background:#fff;" />
+          <div class="screen-zoom">↗ Open full size</div>
+        </a>
+        <p class="screen-desc">User flow — New user registers (mobile no. or Google), completes onboarding (language, diet preferences, major goal), lands on Home. From there: Apply Filter → personalised or featured recipe list → recipe detail → adjustments → start cooking → share snap → gain points → unlock benefits.</p>
+      </div>
+    </div>
+
+    <!-- 6. WIREFRAMES -->
+    <div class="case-section">
+      <h2>Mid-Fidelity Wireframes</h2>
+      <p>Wireframes explored the core interaction patterns before visual design was applied — ensuring navigation, layout hierarchy, and feature placement were validated before committing to colour and typography.</p>
+      <div class="mobile-grid mobile-grid--2 wireframe-grid">
+        <div class="mobile-item">
+          <a href="bh-wireframe-community.png" target="_blank" title="Open full size">
+            <img src="bh-wireframe-community.png" alt="Wireframe of community discovery screen" />
+            <div class="mz">↗</div>
+          </a>
+          <div class="mobile-label">Community — Discover & Inspire</div>
+        </div>
+        <div class="mobile-item">
+          <a href="bh-wireframe-plan.png" target="_blank" title="Open full size">
+            <img src="bh-wireframe-plan.png" alt="Wireframe of meal planning screen" />
+            <div class="mz">↗</div>
+          </a>
+          <div class="mobile-label">Meal Prep — Weekly Plan</div>
+        </div>
+      </div>
+    </div>
+
+    <!-- 7. VALUE PROPOSITION -->
+    <div class="case-section">
+      <h2>Value Proposition</h2>
+      <div class="value-grid">
+        <div class="value-card"><span class="value-icon">🍽️</span><div class="value-title">Pre-planned meals</div><div class="value-desc">Eliminates the daily stress of "what to eat" with personalised pre-plans that fit any schedule.</div></div>
+        <div class="value-card"><span class="value-icon">👩‍🍳</span><div class="value-title">Easy-to-follow recipes</div><div class="value-desc">Beginner-friendly step-by-step instructions for healthy meals with clear ingredient lists.</div></div>
+        <div class="value-card"><span class="value-icon">💰</span><div class="value-title">Focus on affordability</div><div class="value-desc">Budget-friendly recipes and automatic grocery list to minimise food waste and overspending.</div></div>
+        <div class="value-card"><span class="value-icon">⚡</span><div class="value-title">Time-saving features</div><div class="value-desc">Quick preparation options and batch cooking schedules tailored to your weekly availability.</div></div>
+        <div class="value-card"><span class="value-icon">🤝</span><div class="value-title">Supportive Community</div><div class="value-desc">Explore threads, share insights, gain points, and access women-specific nutrition knowledge.</div></div>
+        <div class="value-card"><span class="value-icon">🎯</span><div class="value-title">Personalised to you</div><div class="value-desc">Accounts for menstrual cycle phase, dietary restrictions, allergies, identity and health goals.</div></div>
+      </div>
+    </div>
+
+    <!-- 8. ONBOARDING -->
+    <div class="case-section">
+      <h2>High Fidelity — Onboarding & Sign In</h2>
+      <p>The onboarding flow collects personalisation data progressively — identity, allergies, dietary preferences, and menstrual cycle phase — without overwhelming users. Each screen asks only one question, with a warm cream background that establishes the Barn House aesthetic from the first interaction.</p>
+
+      <!-- Row 1: 4 app screens uniform height -->
+      <div class="mobile-grid mobile-grid--4">
+        <div class="mobile-item">
+          <a href="bh-signin.png" target="_blank" title="Open full size">
+            <img src="bh-signin.png" alt="Sign in screen — Welcome To with phone number and password fields" />
+            <div class="mz">↗</div>
+          </a>
+          <div class="mobile-label">Sign In</div>
+        </div>
+        <div class="mobile-item">
+          <a href="bh-signup.png" target="_blank" title="Open full size">
+            <img src="bh-signup.png" alt="Sign up screen — Let's get started with phone, OTP and password" />
+            <div class="mz">↗</div>
+          </a>
+          <div class="mobile-label">Sign Up</div>
+        </div>
+        <div class="mobile-item">
+          <a href="bh-onboard-pre.jpg" target="_blank" title="Open full size">
+            <img src="bh-onboard-pre.jpg" alt="Onboarding PRE screen — Stop wondering what to eat!" />
+            <div class="mz">↗</div>
+          </a>
+          <div class="mobile-label">Onboarding — PRE</div>
+        </div>
+        <div class="mobile-item">
+          <a href="bh-onboard-identity.jpg" target="_blank" title="Open full size">
+            <img src="bh-onboard-identity.jpg" alt="Onboarding Identity screen — How would you identify yourself?" />
+            <div class="mz">↗</div>
+          </a>
+          <div class="mobile-label">Identity</div>
+        </div>
+      </div>
+      <!-- Row 2: Allergies single screen centred + Icon Library full-width -->
+      <div class="mobile-grid mobile-grid--3" style="margin-top:14px;">
+        <div class="mobile-item">
+          <a href="bh-onboard-allergies.png" target="_blank" title="Open full size">
+            <img src="bh-onboard-allergies.png" alt="Allergies screen — do you have food allergies or intolerance" />
+            <div class="mz">↗</div>
+          </a>
+          <div class="mobile-label">Allergies & Intolerances</div>
+        </div>
+        <div class="mobile-item" style="grid-column:span 2;">
+          <a href="bh-icons.png" target="_blank" title="Open full size">
+            <img src="bh-icons.png" alt="Custom food icon library — seafood, vegetables, proteins, dairy" style="object-fit:contain;background:#fff;" />
+            <div class="mz">↗</div>
+          </a>
+          <div class="mobile-label">Custom Icon Library — All Food Categories</div>
+        </div>
+      </div>
+      <p class="screen-desc">Onboarding asks about identity, food allergies (Egg, Seafood, Lactose, Nuts, Gluten), and cycle phase in progressive screens — building a personalised nutritional profile before the user ever sees a meal. A custom icon library was designed for all food categories.</p>
+    </div>
+
+    <!-- 9. MEAL PLANNING -->
+    <div class="case-section">
+      <h2>Meal Planning — Your Weekly Menu</h2>
+      <p>The heart of the app. The weekly plan shows the user's personalised menu day-by-day, with Breakfast/Lunch/Dinner tabs, cooking time, and a "Start Prep" CTA. Recipes show full ingredients with nutrition values, step-by-step instructions, and serving adjustments — all designed for someone cooking alone after a long day at work.</p>
+
+      <div class="screen-block">
+        <div class="screen-tag">Home — Weekly Plan</div>
+        <a href="bh-weekly-plan.png" target="_blank" class="screen-link" title="Click to open full size" style="max-width:420px;margin:0 auto;display:block;">
+          <img src="bh-weekly-plan.png" alt="Weekly Plan screen showing 7-day menu with Peanut English Muffin breakfast options and Start Prep CTA" class="screen-img" style="object-fit:contain;height:auto;max-height:none;" />
+          <div class="screen-zoom">↗ Open full size</div>
+        </a>
+        <p class="screen-desc">Weekly Plan — 7-day calendar (SAT–FRI), Breakfast/Dinner/Lunch tabs, meal cards with cooking time (15min 🔥), recipe title, creator tag, and Start Prep button. Prep Day highlighted. "Know more about @superhealthy" surfaces nutritionist expertise.</p>
+      </div>
+
+      <div class="mobile-grid mobile-grid--3">
+        <div class="mobile-item">
+          <a href="bh-recipe-ingredients.png" target="_blank" title="Open full size">
+            <img src="bh-recipe-ingredients.png" alt="Recipe detail — Peanut English Muffin with ingredients list and nutrition values" />
+            <div class="mz">↗</div>
+          </a>
+          <div class="mobile-label">Recipe — Ingredients & Nutrition</div>
+        </div>
+        <div class="mobile-item">
+          <a href="bh-recipe-steps.png" target="_blank" title="Open full size">
+            <img src="bh-recipe-steps.png" alt="Recipe detail — Instruction tab with step 1 of 4 and description" />
+            <div class="mz">↗</div>
+          </a>
+          <div class="mobile-label">Recipe — Step-by-Step Instructions</div>
+        </div>
+        <div class="mobile-item">
+          <a href="bh-add-profile.png" target="_blank" title="Open full size">
+            <img src="bh-add-profile.png" alt="Add to Profile screen — Hope you have finished your cooking" />
+            <div class="mz">↗</div>
+          </a>
+          <div class="mobile-label">Post-Cooking — Add to Profile</div>
+        </div>
+      </div>
+      <p class="screen-desc">Recipe detail splits into Ingredients (with quantity and nutrition value per item) and Instruction (step-by-step progress 1–4) tabs. After cooking, users photograph their dish and Add to Profile — earning points redeemable for offline Barn House experiences (Table to Fork · Workshop · Therapy).</p>
+    </div>
+
+    <!-- 10. COMMUNITY -->
+    <div class="case-section">
+      <h2>Supportive Community — Women Nutrition Need</h2>
+      <p>The community layer is what separates The Barn House from a recipe app. It's a space specifically focused on women's nutrition — with Explore Threads (Beyond Nutrition, Emotional Eating, Balanced Diet), research-backed articles, peer insights, and a "Share Your Insights" participation loop. The gamification is designed to reward community contribution, not just recipe completion.</p>
+
+      <div class="mobile-grid mobile-grid--2">
+        <div class="mobile-item">
+          <a href="bh-community.png" target="_blank" title="Open full size">
+            <img src="bh-community.png" alt="Community screen — Explore Threads with Mindful Minutes and Brain Food content, Recommended For You and Trendy Topics" />
+            <div class="mz">↗</div>
+          </a>
+          <div class="mobile-label">Community — Explore Threads</div>
+        </div>
+        <div class="mobile-item">
+          <a href="bh-nutrition-thread.png" target="_blank" title="Open full size">
+            <img src="bh-nutrition-thread.png" alt="Women Nutrition Need thread with research article, peer comments and Share Your Insights CTA" />
+            <div class="mz">↗</div>
+          </a>
+          <div class="mobile-label">Women Nutrition Need — Thread</div>
+        </div>
+      </div>
+      <p class="screen-desc">Explore Threads (Beyond Nutrition · Emotional Eating · Balanced Diet) surface research-backed content. Each thread shows the study, community comments, a helpfulness rating, and "Share Your Insights" — making every user both a learner and a contributor.</p>
+    </div>
+
+    <!-- 11. PROFILE -->
+    <div class="case-section">
+      <h2>Profile & Gamification</h2>
+      <p>The profile system tracks the user's wellness journey over time — total points, active threads, cooking streaks, and saved content. Points earned through weekly streaks, sharing insights, and completing plans can be redeemed for offline Barn House experiences, closing the loop between the digital app and the physical wellness centre.</p>
+
+      <div class="mobile-grid mobile-grid--3">
+        <div class="mobile-item">
+          <a href="bh-profile.png" target="_blank" title="Open full size">
+            <img src="bh-profile.png" alt="Profile screen showing Srushti Dhobley with total 2200 points, 40 active threads, 28 streaks" />
+            <div class="mz">↗</div>
+          </a>
+          <div class="mobile-label">Profile — Points Overview</div>
+        </div>
+        <div class="mobile-item">
+          <a href="bh-profile-menu.jpg" target="_blank" title="Open full size">
+            <img src="bh-profile-menu.jpg" alt="Profile drawer menu — My Profile, Manage Preferences, Archive, Set Reminder, About The Barn House" />
+            <div class="mz">↗</div>
+          </a>
+          <div class="mobile-label">Profile — Settings Drawer</div>
+        </div>
+        <div class="mobile-item">
+          <a href="bh-wallet.png" target="_blank" title="Open full size">
+            <img src="bh-wallet.png" alt="Wallet showing 2200 total points and redemption options for offline experiences" />
+            <div class="mz">↗</div>
+          </a>
+          <div class="mobile-label">Wallet — Redeem Points</div>
+        </div>
+      </div>
+      <p class="screen-desc">Profile tracks 2,200 total points · 40 active threads · 28 streaks. Points redeemable for: Table to Fork (250✦) · Workshop (150✦) · Therapy (500✦) — bridging the digital app to The Barn House's offline community and wellness services.</p>
+    </div>
+
+    <!-- 12. KEY DECISIONS -->
+    <div class="case-section">
+      <h2>Key Design Decisions</h2>
+      <ul>
+        <li><strong style="color:var(--text)">Menstrual cycle-aware meal planning.</strong> Most nutrition apps ignore the fact that women's nutritional needs change significantly across their menstrual cycle. Integrating cycle phase (Menstruation / Follicular / Ovulation / Luteal) into meal recommendations was the most distinctive and research-grounded feature — and the one that most directly addresses the gap no competitor was filling.</li>
+        <li><strong style="color:var(--text)">Gamification that connects digital to physical.</strong> Points aren't redeemed for digital badges — they unlock real Barn House experiences (workshops, therapy sessions, chef events). This makes the app feel like a gateway into a community rather than a standalone tool, and directly serves the wellness centre's offline business model.</li>
+        <li><strong style="color:var(--text)">Warm earth tones, not fitness green.</strong> The deliberate choice to avoid the clinical greens and blues of typical wellness apps in favour of warm ambers and creams (#A16144, #EAB07C) positioned The Barn House as approachable and nurturing — not another fitness tracker.</li>
+        <li><strong style="color:var(--text)">Community as a feature, not an afterthought.</strong> Most meal apps treat community as a secondary tab. Here, women-specific nutrition research and peer-sharing are core to the value proposition — the app is explicitly positioned as a support system, not just a recipe database.</li>
+      </ul>
+    </div>
+
+    <!-- 13. OUTCOME -->
+    <div class="case-section">
+      <h2>Outcome & Reflection</h2>
+      <p>The Barn House project was the most end-to-end design work I've done — spanning primary research, competitive analysis, brand identity, information architecture, wireframing, style guide development, and high-fidelity UI across a full mobile app.</p>
+      <p>The most significant learning was the relationship between brand identity and product design. The logo concept (conscious living, organic form, balance) wasn't just a mark — it became the principle that governed every colour, type, and interaction decision in the app. When the brand has a clear idea at its core, product design decisions become easier to make and easier to justify.</p>
+      <div class="case-callout">"The warmth of the brand had to survive being translated into a mobile UI. That meant every colour choice, every radius, every copy tone had to carry the same feeling as the logo — organic, nurturing, balanced."</div>
+    </div>
+
+    <!-- PROJECT NAV -->
+    <div style="border-top:1px solid var(--border);padding-top:48px;display:flex;justify-content:space-between;align-items:center;">
+      <a href="case-study-vortex.html" style="font-size:13px;color:var(--text-dim);">← Vortex</a>
+      <a href="projects.html" style="font-size:13px;color:var(--text-dim);">All projects →</a>
+    </div>
+
+  </div>
+
+  <footer class="footer">
+    <span>SRUSHTI DHOBLEY © 2026</span>
+    <span>INTERACTION &amp; VISUAL DESIGNER</span>
+  </footer>
+  <script src="script.js"></script>
+</body>
+</html>

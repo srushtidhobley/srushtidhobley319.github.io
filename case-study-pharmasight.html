@@ -1,0 +1,493 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <title>Pharmasight · Srushti Dhobley</title>
+  <link rel="preconnect" href="https://fonts.googleapis.com" />
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
+  <link href="https://fonts.googleapis.com/css2?family=Inter:wght@300;400;500;600&family=Fraunces:ital,opsz,wght@0,9..144,300;0,9..144,400;1,9..144,300;1,9..144,400&display=swap" rel="stylesheet" />
+  <link rel="stylesheet" href="style.css" />
+  <style>
+    .img-full{width:100%;border-radius:var(--radius-lg);border:1px solid var(--border);display:block;margin:28px 0;object-fit:cover}
+    .img-caption{font-size:15px;color:var(--text-faint);text-align:center;margin-top:-18px;margin-bottom:28px;font-style:italic;line-height:1.5}
+    .img-grid-2{display:grid;grid-template-columns:1fr 1fr;gap:12px;margin:28px 0}
+    .img-grid-2 img{width:100%;border-radius:var(--radius);border:1px solid var(--border);display:block;object-fit:cover}
+    .img-grid-3{display:grid;grid-template-columns:1fr 1fr 1fr;gap:10px;margin:28px 0}
+    .img-grid-3 img{width:100%;border-radius:var(--radius);border:1px solid var(--border);display:block;object-fit:cover;height:200px}
+    .screen-label{font-size:10px;font-weight:600;letter-spacing:0.1em;text-transform:uppercase;color:var(--text-dim);text-align:center;margin-top:6px;margin-bottom:16px}
+    .insight-grid{display:grid;grid-template-columns:1fr 1fr;gap:12px;margin:24px 0}
+    .insight-card{background:var(--bg2);border:1px solid var(--border);border-radius:var(--radius);padding:18px 20px}
+    .insight-num{font-family:var(--ff-display);font-size:30px;font-weight:300;color:var(--accent);line-height:1;margin-bottom:8px}
+    .insight-lbl{font-size:13px;color:var(--text-dim);font-weight:300;line-height:1.5}
+    /* ── PERSONAS — horizontal card layout ── */
+    .persona-stack { display:flex; flex-direction:column; gap:2px; margin:28px 0; }
+    .persona-h { display:grid; grid-template-columns:220px 1fr 1fr; gap:0; border-radius:var(--radius-lg); overflow:hidden; border:1px solid var(--border); }
+    .persona-id { background:var(--bg3); padding:32px 28px; display:flex; flex-direction:column; justify-content:space-between; border-right:1px solid var(--border); }
+    .persona-badge { font-size:9px; font-weight:700; letter-spacing:0.14em; text-transform:uppercase; color:var(--accent); margin-bottom:12px; }
+    .persona-avatar-ring { width:52px; height:52px; border-radius:50%; display:flex; align-items:center; justify-content:center; font-size:24px; margin-bottom:16px; border:1px solid var(--border); background:var(--bg2); }
+    .persona-nm { font-size:18px; font-weight:500; color:var(--text); line-height:1.2; margin-bottom:4px; }
+    .persona-role-txt { font-size:12px; color:var(--text-dim); line-height:1.5; }
+    .persona-col { padding:28px 24px; border-right:1px solid var(--border); }
+    .persona-col:last-child { border-right:none; }
+    .persona-col-title { font-size:10px; font-weight:700; letter-spacing:0.12em; text-transform:uppercase; color:var(--text-faint); margin-bottom:14px; }
+    .persona-col ul { list-style:none; padding:0; display:flex; flex-direction:column; gap:10px; }
+    .persona-col li { font-size:13px; color:var(--text-dim); line-height:1.55; padding-left:14px; position:relative; }
+    .persona-col li::before { content:''; position:absolute; left:0; top:9px; width:5px; height:5px; border-radius:50%; background:var(--border); }
+    .persona-quote-strip { padding:16px 28px; background:var(--bg2); border-top:1px solid var(--border); grid-column:1/-1; display:flex; align-items:center; gap:16px; }
+    .persona-quote-strip p { font-family:var(--ff-display); font-size:15px; font-style:italic; color:var(--text); line-height:1.5; }
+    .persona-quote-strip .qs { font-size:11px; color:var(--text-dim); flex-shrink:0; font-weight:500; }
+
+    /* ── USER FLOW — scene-by-scene narrative ── */
+    .flow-scene-wrap { margin:28px 0; display:flex; flex-direction:column; gap:0; }
+    .flow-scene { display:grid; grid-template-columns:52px 1fr; gap:0; position:relative; }
+    .flow-scene::before { content:''; position:absolute; left:25px; top:44px; bottom:-1px; width:1px; background:var(--border); z-index:0; }
+    .flow-scene:last-child::before { display:none; }
+    .flow-scene-left { display:flex; flex-direction:column; align-items:center; padding-top:20px; position:relative; z-index:1; }
+    .flow-dot { width:10px; height:10px; border-radius:50%; background:var(--border); border:2px solid var(--bg); flex-shrink:0; }
+    .flow-dot--active { background:var(--accent); border-color:var(--accent); }
+    .flow-dot--decision { background:transparent; border:2px solid rgba(255,180,50,0.6); width:14px; height:14px; transform:rotate(45deg); border-radius:2px; }
+    .flow-dot--done { background:rgba(74,144,226,0.7); border-color:rgba(74,144,226,0.7); }
+    .flow-scene-body { padding:16px 0 32px 20px; }
+    .flow-scene-tag { font-size:10px; font-weight:600; letter-spacing:0.1em; text-transform:uppercase; color:var(--text-faint); margin-bottom:6px; }
+    .flow-scene-tag--trigger { color:var(--accent); }
+    .flow-scene-tag--decision { color:rgba(255,180,50,0.9); }
+    .flow-scene-tag--done { color:rgba(74,144,226,0.8); }
+    .flow-scene-title { font-family:var(--ff-display); font-size:18px; font-weight:300; color:var(--text); line-height:1.3; margin-bottom:6px; }
+    .flow-scene-note { font-size:13px; color:var(--text-dim); line-height:1.65; max-width:520px; }
+    .flow-branches { display:grid; grid-template-columns:1fr 1fr; gap:10px; margin-top:14px; max-width:540px; }
+    .flow-branch-pill { border-radius:var(--radius); padding:14px 16px; }
+    .flow-branch-pill--yes { background:rgba(185,255,75,0.07); border:1px solid rgba(185,255,75,0.2); }
+    .flow-branch-pill--no  { background:rgba(255,100,80,0.06); border:1px solid rgba(255,100,80,0.18); }
+    .flow-branch-pill .bl  { font-size:10px; font-weight:700; letter-spacing:0.1em; text-transform:uppercase; margin-bottom:5px; }
+    .flow-branch-pill--yes .bl { color:var(--accent); }
+    .flow-branch-pill--no .bl  { color:#f87171; }
+    .flow-branch-pill p { font-size:12px; color:var(--text-dim); line-height:1.5; }
+
+    /* ── STEP PROGRESS STRIP ── */
+    .step-strip { display:flex; align-items:center; gap:0; margin:24px 0 32px; }
+    .step-pill { font-size:11px; font-weight:600; letter-spacing:0.08em; padding:6px 16px; border-radius:100px; border:1px solid var(--border); color:var(--text-dim); flex-shrink:0; }
+    .step-pill--active { background:var(--accent); color:#000; border-color:var(--accent); }
+    .step-pill--done { background:rgba(185,255,75,0.1); color:var(--accent); border-color:rgba(185,255,75,0.3); }
+    .step-connector { flex:1; height:1px; background:var(--border); margin:0 8px; }
+
+    /* ── FULL-WIDTH SCREEN BLOCKS ── */
+    .screen-block { margin-bottom:48px; }
+    .screen-tag { font-size:10px; font-weight:700; letter-spacing:0.12em; text-transform:uppercase; color:var(--accent); margin-bottom:12px; }
+    .screen-link { display:block; position:relative; border-radius:var(--radius-lg); overflow:hidden; border:1px solid var(--border); cursor:pointer; text-decoration:none; }
+    .screen-link:hover .screen-zoom { opacity:1; }
+    .screen-link:hover .screen-img { filter:brightness(0.88); }
+    .screen-img { width:100%; display:block; transition:filter 0.2s; }
+    .screen-zoom { position:absolute; bottom:16px; right:16px; background:rgba(0,0,0,0.75); color:#fff; font-size:12px; font-weight:500; padding:6px 14px; border-radius:100px; opacity:0; transition:opacity 0.2s; backdrop-filter:blur(8px); letter-spacing:0.04em; }
+    .screen-desc { font-size:15px; color:var(--text-dim); margin-top:12px; line-height:1.65; }
+
+    @media(max-width:800px){
+      .persona-h{grid-template-columns:1fr}
+      .persona-id,.persona-col{border-right:none;border-bottom:1px solid var(--border)}
+      .persona-quote-strip{grid-column:1}
+      .img-grid-2{grid-template-columns:1fr}
+      .img-grid-3{grid-template-columns:1fr}
+      .flow-branches{grid-template-columns:1fr}
+    }
+  </style>
+</head>
+<body>
+  <nav class="nav" id="nav">
+    <a href="index.html" class="nav-logo"><img src="logo.jpg" alt="Srushti Logo" style="height:40px;width:auto;display:block;" /></a>
+    <div class="nav-links">
+      <a href="projects.html">Projects</a>
+      <a href="about.html">About Me</a>
+      <a href="index.html#contact">Let's Connect</a>
+      <a href="Srushti_Dhobley_Resume.pdf" class="nav-cta" download>Download CV</a>
+    </div>
+    <button class="nav-burger" id="burger" aria-label="menu"><span></span><span></span></button>
+  </nav>
+  <div class="nav-mobile" id="navMobile">
+    <a href="projects.html">Projects</a>
+    <a href="about.html">About Me</a>
+    <a href="index.html#contact">Let's Connect</a>
+    <a href="Srushti_Dhobley_Resume.pdf" download>Download CV</a>
+  </div>
+
+  <div class="case-hero">
+    <a href="projects.html" style="font-size:13px;color:var(--text-dim);display:inline-flex;align-items:center;gap:6px;margin-bottom:32px;">← Back to projects</a>
+    <div class="project-tags">
+      <span class="tag">Healthcare UX</span><span class="tag">UI Design</span>
+      <span class="tag">User Research</span><span class="tag">BI Platform</span>
+    </div>
+    <h1>Pharmasight — Replacing Guesswork in Pharmacy Supply Chains with a Collaborative BI Platform </h1>
+    <div class="case-meta-grid">
+      <div class="case-meta-item"><span class="case-meta-label">My Role</span><span class="case-meta-value"> UX/UI and Research</span></div>
+      <div class="case-meta-item"><span class="case-meta-label">Duration</span><span class="case-meta-value">2 weeks</span></div>
+      <div class="case-meta-item"><span class="case-meta-label">Tools</span><span class="case-meta-value">Figma · FigJam · Maze</span></div>
+      
+    </div>
+  </div>
+
+  <div style="max-width:1000px;margin:0 auto;padding:0 48px 60px;">
+    <img src="pharma-cover.jpg" alt="Pharmasight — Collaborative Business Intelligence Platform" class="img-full" style="height:420px;object-fit:cover;object-position:center;" />
+  </div>
+
+  <div class="case-body">
+
+    <div class="case-section">
+      <h2>The Problem</h2>
+      <p>Pharmacies across Ireland and the UK operate on fragmented, manually maintained stock records. Transaction data is logged meticulously but used exclusively for billing, never for forward planning. The result is chronic dual failure: overstocking of slow moving medicines that expire on shelves and stockouts of critical medications patients depend on daily.</p>
+      <p>The brief was to design a business intelligence platform that could transform existing transaction data into actionable forecasting insight, shared simultaneously across wholesale distributors, pharmacy supervisors and clinical operations managers.</p>
+    </div>
+
+    <div class="case-section">
+      <h2>Research & System Mapping</h2>
+      <p>Before designing any screens, I mapped the full system stakeholders, data sources, core problems and feature opportunities to understand where design could create the most leverage.</p>
+      <a href="pharma-mindmap.jpg" target="_blank" class="screen-link" title="Click to open full size" style="display:block;">
+          <img src="pharma-mindmap.jpg" alt="Business intelligence system mind map showing stakeholders, database, core problems, features, challenges and opportunities" class="img-full" />
+          <div class="screen-zoom">↗ Open full size</div>
+        </a>
+      <p class="img-caption">System mind map — mapping stakeholders (wholesalers, pharmacists, manufacturers, patients), core problems (stockouts, fragmented systems, manual workload), and opportunities (AI forecasting, network-wide views, dynamic delivery scheduling).</p>
+      <div class="insight-grid">
+        <div class="insight-card"><div class="insight-num">5</div><div class="insight-lbl">Core problems identified — stockouts, overstock, fragmented systems, manual workload, limited network visibility</div></div>
+        <div class="insight-card"><div class="insight-num">4</div><div class="insight-lbl">Key feature areas defined — executive dashboard, pharmacy profiles, alert centre, AI recommendation panels</div></div>
+        <div class="insight-card"><div class="insight-num">3</div><div class="insight-lbl">Stakeholder interviews across the supply chain — pharmacy supervisor, clinical ops manager, wholesale coordinator</div></div>
+        <div class="insight-card"><div class="insight-num">5</div><div class="insight-lbl">Research insights that directly shaped 5 design features, each validated through think-aloud testing</div></div>
+      </div>
+    </div>
+
+    <div class="case-section">
+      <h2>The Strategic Pivot</h2>
+      <div class="case-callout">"Through user research, I identified that optimising a single pharmacy shelf addressed only a fraction of the problem. The real opportunity was at distribution level — serving multiple pharmacies simultaneously and reducing waste at scale."</div>
+      <p>This reframe was the most significant design decision of the project. The original brief pointed toward a single pharmacy stock management tool. Three stakeholder interviews revealed that supply chain pressure originated upstream. Designing for one shelf meant designing for one symptom. Designing for the distribution layer meant addressing the systemic cause.</p>
+    </div>
+
+    <div class="case-section">
+      <h2>User Personas</h2>
+      <p>Three distinct users interact with Pharmasight. Each has fundamentally different goals, constraints, and mental models — requiring separate interface layers within the same platform.</p>
+      <div class="persona-stack">
+
+        <!-- Persona 1 -->
+        <div style="border-radius:var(--radius-lg);overflow:hidden;border:1px solid var(--border);margin-bottom:12px;">
+          <div class="persona-h" style="border:none;border-radius:0;">
+            <div class="persona-id">
+              <div>
+                <div class="persona-badge">Persona 01 · Pharmacy</div>
+                <div class="persona-avatar-ring">💊</div>
+                <div class="persona-nm">Sarah O'Brien</div>
+                <div class="persona-role-txt">Pharmacy Supervisor<br/>Detroit Pharmacy Plus<br/>12 years experience</div>
+              </div>
+            </div>
+            <div class="persona-col">
+              <div class="persona-col-title">What she's trying to do</div>
+              <ul>
+                <li>Catch critical stockouts before they affect patients</li>
+                <li>Stop spending 2+ hours a day on manual reconciliation</li>
+                <li>See alerts that tell her what to do, not just what's wrong</li>
+              </ul>
+            </div>
+            <div class="persona-col">
+              <div class="persona-col-title">Where things break down</div>
+              <ul>
+                <li>Her current system shows what's already gone — never what's about to run out</li>
+                <li>Too many low-signal alerts mean the urgent ones get buried</li>
+                <li>Any spare moment during peak hours is a moment she doesn't have</li>
+              </ul>
+            </div>
+          </div>
+          <div class="persona-quote-strip">
+            <span class="qs">Her words →</span>
+            <p>"I need to know we're about to run out of insulin before it becomes a crisis. Not after."</p>
+          </div>
+        </div>
+
+        <!-- Persona 2 -->
+        <div style="border-radius:var(--radius-lg);overflow:hidden;border:1px solid var(--border);margin-bottom:12px;">
+          <div class="persona-h" style="border:none;border-radius:0;">
+            <div class="persona-id">
+              <div>
+                <div class="persona-badge">Persona 02 · Operations</div>
+                <div class="persona-avatar-ring">📋</div>
+                <div class="persona-nm">Dr. Mark Connelly</div>
+                <div class="persona-role-txt">Clinical Operations Manager<br/>Regional Health Network<br/>8 years experience</div>
+              </div>
+            </div>
+            <div class="persona-col">
+              <div class="persona-col-title">What he's trying to do</div>
+              <ul>
+                <li>Order medicines that match what the local community actually needs</li>
+                <li>Spot pharmacies in trouble before they call him in a panic</li>
+                <li>Produce board reports without manually pulling data from six places</li>
+              </ul>
+            </div>
+            <div class="persona-col">
+              <div class="persona-col-title">Where things break down</div>
+              <ul>
+                <li>No network visibility — he's calling each pharmacy individually to understand what's happening</li>
+                <li>When AI makes a suggestion, he can't justify it to anyone without understanding why</li>
+                <li>He's accountable to a board but the data lives in silos he can't connect</li>
+              </ul>
+            </div>
+          </div>
+          <div class="persona-quote-strip">
+            <span class="qs">His words →</span>
+            <p>"My system tells me what happened last month. I need something that tells me what's going to happen next week."</p>
+          </div>
+        </div>
+
+        <!-- Persona 3 -->
+        <div style="border-radius:var(--radius-lg);overflow:hidden;border:1px solid var(--border);">
+          <div class="persona-h" style="border:none;border-radius:0;">
+            <div class="persona-id">
+              <div>
+                <div class="persona-badge">Persona 03 · Wholesale</div>
+                <div class="persona-avatar-ring">🚚</div>
+                <div class="persona-nm">James Walsh</div>
+                <div class="persona-role-txt">Wholesale Coordinator<br/>Dealport Distribution<br/>6 years experience</div>
+              </div>
+            </div>
+            <div class="persona-col">
+              <div class="persona-col-title">What he's trying to do</div>
+              <ul>
+                <li>Back up his delivery decisions with data his pharmacy partners will actually trust</li>
+                <li>Plan routes across 32 partners without running into emergencies mid-week</li>
+                <li>Use AI recommendations — but only the ones he can stand behind</li>
+              </ul>
+            </div>
+            <div class="persona-col">
+              <div class="persona-col-title">Where things break down</div>
+              <ul>
+                <li>He's calculating delivery quantities manually — spreadsheets, gut feel, phone calls</li>
+                <li>Pharmacies push back on his decisions when there's no data to show them</li>
+                <li>AI suggestions arrive without any reasoning — he can't act on what he can't explain</li>
+              </ul>
+            </div>
+          </div>
+          <div class="persona-quote-strip">
+            <span class="qs">His words →</span>
+            <p>"If I can't explain why I'm recommending this delivery quantity, the pharmacy won't accept it. And they'd be right not to."</p>
+          </div>
+        </div>
+
+      </div>
+    </div>
+
+    <div class="case-section">
+      <h2>User Flow — James Schedules an AI-Recommended Delivery</h2>
+      <p style="font-size:14px;color:var(--text-dim);margin-bottom:28px;font-style:italic;">James (wholesale coordinator) starts his morning the same way he always does — checking what needs attention.</p>
+
+      <div class="flow-scene-wrap">
+
+        <div class="flow-scene">
+          <div class="flow-scene-left"><div class="flow-dot flow-dot--active"></div></div>
+          <div class="flow-scene-body">
+            <div class="flow-scene-tag flow-scene-tag--trigger">Starting point</div>
+            <div class="flow-scene-title">He logs in and sees the network at a glance</div>
+            <div class="flow-scene-note">$1.35M monthly volume, 32 partners, 12 active alerts. The demand trend chart shows this week tracking slightly above the AI prediction. Nothing unusual — except one flag in the alert count that wasn't there yesterday.</div>
+          </div>
+        </div>
+
+        <div class="flow-scene">
+          <div class="flow-scene-left"><div class="flow-dot"></div></div>
+          <div class="flow-scene-body">
+            <div class="flow-scene-tag">The problem surfaces</div>
+            <div class="flow-scene-title">Detroit Pharmacy Plus is marked High Risk</div>
+            <div class="flow-scene-note">420 units sold per day. Only 3,000 left. That's 5 days before they run out. Last delivery was 23rd November. The system has already done the maths — and it's not good. An AI suggestion sits below the alert: there's a potential $25,900 monthly profit improvement on the table if he acts now.</div>
+          </div>
+        </div>
+
+        <div class="flow-scene">
+          <div class="flow-scene-left"><div class="flow-dot"></div></div>
+          <div class="flow-scene-body">
+            <div class="flow-scene-tag">Understanding the reasoning</div>
+            <div class="flow-scene-title">He opens View Details before he does anything</div>
+            <div class="flow-scene-note">This is the moment that matters. Budget Overview: current spend $134K vs AI-recommended $139K — with a projected profit lift of $15,340 monthly. He switches to Profit Comparison. Every product, line by line: current price, AI price, current quantity, AI quantity, profit impact. He can see exactly why the system is suggesting what it's suggesting.</div>
+          </div>
+        </div>
+
+        <div class="flow-scene">
+          <div class="flow-scene-left"><div class="flow-dot flow-dot--decision"></div></div>
+          <div class="flow-scene-body">
+            <div class="flow-scene-tag flow-scene-tag--decision">Decision point</div>
+            <div class="flow-scene-title">Accept the recommendation, or adjust it first?</div>
+            <div class="flow-branches">
+              <div class="flow-branch-pill flow-branch-pill--yes">
+                <div class="bl">He accepts as-is</div>
+                <p>Clicks Schedule Delivery. AI quantities carry over automatically. No re-entry, no second-guessing.</p>
+              </div>
+              <div class="flow-branch-pill flow-branch-pill--no">
+                <div class="bl">He adjusts first</div>
+                <p>Edits a quantity. The confidence score and profit impact update in real time — he can see the trade-off of every change before committing.</p>
+              </div>
+            </div>
+          </div>
+        </div>
+
+        <div class="flow-scene">
+          <div class="flow-scene-left"><div class="flow-dot"></div></div>
+          <div class="flow-scene-body">
+            <div class="flow-scene-tag">Step 1 of 3</div>
+            <div class="flow-scene-title">He adds the products</div>
+            <div class="flow-scene-note">Insulin Glargine, 200 units at $15 each. Subtotal: $1,500. Clean form — search, select, quantity, total. One product, one screen.</div>
+          </div>
+        </div>
+
+        <div class="flow-scene">
+          <div class="flow-scene-left"><div class="flow-dot"></div></div>
+          <div class="flow-scene-body">
+            <div class="flow-scene-tag">Step 2 of 3</div>
+            <div class="flow-scene-title">He locks in the date, time, and driver</div>
+            <div class="flow-scene-note">12 December, 9:00 AM, Priority: Urgent. Emily Chen gets the job — Truck @509. The system surfaces the route: 127 miles, 2 hours 15 minutes. He didn't need to look that up.</div>
+          </div>
+        </div>
+
+        <div class="flow-scene">
+          <div class="flow-scene-left"><div class="flow-dot"></div></div>
+          <div class="flow-scene-body">
+            <div class="flow-scene-tag">Step 3 of 3</div>
+            <div class="flow-scene-title">One final look before he confirms</div>
+            <div class="flow-scene-note">Destination, driver, time, products, total: $1,500. This is the screen he'd screenshot if a pharmacy partner questioned the decision — and it would answer every question they have.</div>
+          </div>
+        </div>
+
+        <div class="flow-scene">
+          <div class="flow-scene-left"><div class="flow-dot flow-dot--done"></div></div>
+          <div class="flow-scene-body">
+            <div class="flow-scene-tag flow-scene-tag--done">Done</div>
+            <div class="flow-scene-title">Confirmed. He's back to the network view in under 10 minutes</div>
+            <div class="flow-scene-note">The delivery appears in tracking as Preparing. Detroit Pharmacy Plus is no longer a flag he's thinking about — it's a job in progress. The dashboard updates. He moves on.</div>
+          </div>
+        </div>
+
+      </div>
+    </div>
+
+    <div class="case-section">
+      <h2>Network Intelligence Dashboard</h2>
+      <p>The dashboard gives the wholesale coordinator real-time network overview like monthly volume, active partners, critical alerts and pending deliveries. Network demand trends chart actual vs AI-predicted demand. Regional distribution map shows pharmacy health status by location.</p>
+      <a href="pharma-dashboard.jpg" target="_blank" class="screen-link" title="Click to open full size" style="display:block;">
+          <img src="pharma-dashboard.jpg" alt="Pharmasight Network Intelligence Dashboard showing demand trends, regional map, partner performance and demand by category" class="img-full" />
+          <div class="screen-zoom">↗ Open full size</div>
+        </a>
+      <p class="img-caption">Network Intelligence Dashboard — $1.35M monthly volume across 32 active partners, 12 active alerts (0 critical), 10 AI-pending deliveries. Network demand trend (actual vs AI-predicted vs optimal), regional distribution map (green/at-risk/critical), top performing partners, demand by category.</p>
+    </div>
+
+    <div class="case-section">
+      <h2>Monitoring Alerts — Traffic Light Risk System</h2>
+      <p>The pharmacy supervisor's primary view. Critical information surfaces at a glance — no extra clicks needed. AI Optimisation Suggestions appear inline with each pharmacy card, making every recommendation immediately actionable with full profit impact shown.</p>
+      <a href="pharma-monitoring.jpg" target="_blank" class="screen-link" title="Click to open full size" style="display:block;">
+          <img src="pharma-monitoring.jpg" alt="Risk Monitoring screen showing Detroit Pharmacy Plus High Risk and Healthplus Pharmacy Low Risk with AI suggestions" class="img-full" />
+          <div class="screen-zoom">↗ Open full size</div>
+        </a>
+      <p class="img-caption">Risk Monitoring — 7 stockout risks · 2 overstock risks · 12 expiry warnings at top level. Detroit Pharmacy Plus (High Risk): 3,000 units, 420 daily sales, 5 days to stockout, AI suggests +$25,900 profit. Healthplus Pharmacy (Low Risk): 1,260 units, 232 daily sales, 12 days remaining, AI suggests +$14,000.</p>
+    </div>
+
+    <div class="case-section">
+      <h2>AI Transparency — Budget Overview & Profit Comparison</h2>
+      <div class="case-callout">"Showing imperfect reasoning built more trust than hiding it."</div>
+      <div class="screen-block">
+        <div class="screen-tag">Budget Overview — Current vs AI-Recommended</div>
+        <a href="pharma-budget.jpg" target="_blank" class="screen-link" title="Click to open full size">
+          <img src="pharma-budget.jpg" alt="Budget Overview — current $134,000 vs AI optimised $139,090, monthly profit improvement $15,340, 145% ROI, $208,080 annual saving" class="screen-img" />
+          <div class="screen-zoom">↗ Open full size</div>
+        </a>
+        <p class="screen-desc">Current monthly budget $134,000 · AI optimised recommendation $139,090 · +$15,340 monthly profit improvement · 145% ROI · $208,080 annual saving potential. Revenue and profit projection with full monthly spending breakdown by product.</p>
+      </div>
+
+      <div class="screen-block">
+        <div class="screen-tag">Profit Comparison — AI Price vs Current per Product</div>
+        <a href="pharma-profit.jpg" target="_blank" class="screen-link" title="Click to open full size">
+          <img src="pharma-profit.jpg" alt="Profit Comparison table showing AI price vs current price and AI quantity vs current quantity with profit impact percentage per product" class="screen-img" />
+          <div class="screen-zoom">↗ Open full size</div>
+        </a>
+        <p class="screen-desc">Per-product view: current price vs AI price, current quantity vs AI-recommended quantity, and profit impact % per line. Every recommendation is auditable — James can show this table to any pharmacy partner to justify the suggested order.</p>
+      </div>
+    </div>
+
+    <div class="case-section">
+      <h2>AI Delivery Recommendations</h2>
+      <p>Pending deliveries show AI confidence scores alongside plain-language reasoning. Detroit Pharmacy Plus (90% confidence): routine 14-day replenishment recommendation. Healthplus Pharmacy (81%): critical insulin shortage — 3 days supply remaining, high-priority delivery flagged to prevent patient care disruption.</p>
+      <a href="pharma-deliveries.jpg" target="_blank" class="screen-link" title="Click to open full size" style="display:block;">
+          <img src="pharma-deliveries.jpg" alt="AI Delivery Recommendations screen with weekly schedule, active deliveries, and pending AI requests with confidence scores" class="img-full" />
+          <div class="screen-zoom">↗ Open full size</div>
+        </a>
+      <p class="img-caption">AI Delivery Recommendations — weekly schedule view, active tracking (Detroit 55% in transit, New York 25% preparing), all pending requests with AI confidence scores (81%–90%) and plain-language reasoning for each — designed so every recommendation can be explained to a pharmacy partner.</p>
+    </div>
+
+    <div class="case-section">
+      <h2>Schedule Delivery — 3-Step Progressive Flow</h2>
+      <p>Each step is shown full-width below. Click any screen to open it at full size.</p>
+
+      <div class="step-strip">
+        <div class="step-pill step-pill--done">✓ Step 1</div>
+        <div class="step-connector"></div>
+        <div class="step-pill step-pill--done">✓ Step 2</div>
+        <div class="step-connector"></div>
+        <div class="step-pill step-pill--active">Step 3</div>
+      </div>
+
+      <div class="screen-block">
+        <div class="screen-tag">Step 1 · Add Items</div>
+        <a href="pharma-schedule-add.jpg" target="_blank" class="screen-link" title="Open full size">
+          <img src="pharma-schedule-add.jpg" alt="Schedule Delivery Step 1 — Add Items: search products, select Insulin Glargine 200 units $1,500" class="screen-img" />
+          <div class="screen-zoom">↗ Open full size</div>
+        </a>
+        <p class="screen-desc">Search and add products. Insulin Glargine selected — 200 units at $15 each, subtotal $1,500. Total order value confirmed before proceeding.</p>
+      </div>
+
+      <div class="screen-block">
+        <div class="screen-tag">Step 2 · Schedule Details</div>
+        <a href="pharma-schedule-details.jpg" target="_blank" class="screen-link" title="Open full size">
+          <img src="pharma-schedule-details.jpg" alt="Schedule Delivery Step 2 — date 12/12/2025, time 9AM, priority Urgent, driver Emily Chen @509" class="screen-img" />
+          <div class="screen-zoom">↗ Open full size</div>
+        </a>
+        <p class="screen-desc">Date 12/12/2025 · Time 9:00 AM · Priority: Urgent. Driver assigned: Emily Chen, Truck @509. Route auto-surfaced: 127 miles · 2 hours 15 minutes.</p>
+      </div>
+
+      <div class="screen-block">
+        <div class="screen-tag">Step 3 · Review & Confirm</div>
+        <a href="pharma-review.jpg" target="_blank" class="screen-link" title="Open full size">
+          <img src="pharma-review.jpg" alt="Schedule Delivery Step 3 — full order review showing destination, schedule, driver, items and total $1,500" class="screen-img" />
+          <div class="screen-zoom">↗ Open full size</div>
+        </a>
+        <p class="screen-desc">Full order summary — destination pharmacy (Detroit Pharmacy Plus · High Risk), driver, date, products, total $1,500. One final review before confirming a pharmaceutical delivery.</p>
+      </div>
+    </div>
+
+    <div class="case-section">
+      <h2>Inventory Management & Partner Network</h2>
+      <div class="screen-block">
+        <div class="screen-tag">Inventory Management — Network-wide Stock View</div>
+        <a href="pharma-inventory.jpg" target="_blank" class="screen-link" title="Click to open full size">
+          <img src="pharma-inventory.jpg" alt="Inventory Management — 1,023 prescription, 390 OTC, 240 speciality, 3,000 biologics with per-pharmacy status Critical/Low/Healthy/Overstock" class="screen-img" />
+          <div class="screen-zoom">↗ Open full size</div>
+        </a>
+        <p class="screen-desc">Network-wide stock across 1,023 prescription medications · 390 OTC · 240 speciality pharmaceuticals · 3,000 biologics and vaccines. Per-pharmacy status shows Critical / Low / Healthy / Overstock with supply days and reorder point — filterable by category and demand surge.</p>
+      </div>
+
+      <div class="screen-block">
+        <div class="screen-tag">Partner Network — 32 Active Partners</div>
+        <a href="pharma-partners.jpg" target="_blank" class="screen-link" title="Click to open full size">
+          <img src="pharma-partners.jpg" alt="Partner Network showing 32 active partners with $542K total monthly savings potential and per-partner monthly volume cards" class="screen-img" />
+          <div class="screen-zoom">↗ Open full size</div>
+        </a>
+        <p class="screen-desc">32 active pharmacy partners · $542K total monthly savings potential · 3 monitoring alerts needing attention · 3,000 avg profit increase with AI optimisation. Each partner card shows monthly volume and one-click inventory access.</p>
+      </div>
+    </div>
+
+    <div class="case-section">
+      <h2>Outcome & Reflection</h2>
+      <p>5 research insights from 3 interviews directly shaped 5 design features, each validated through think-aloud testing. Operating at distribution level rather than single pharmacy level creates value across the entire network simultaneously.</p>
+      <p>The Pharmacy Supervisor identified critical stock issues using traffic light alerts without additional navigation matching her time constrained workflow. The Clinical Operations Manager engaged meaningfully with drill down analytics her current system couldn't provide. The Wholesale Coordinator confirmed AI confidence scoring gave her the language needed for partner conversations.</p>
+      <div class="case-callout">"The most important design decision is often about identifying the right problem instead designing the right solution to the problem you were given."</div>
+    </div>
+
+    <div style="border-top:1px solid var(--border);padding-top:48px;display:flex;justify-content:space-between;align-items:center;">
+      <a href="case-study-kaleidoscope.html" style="font-size:13px;color:var(--text-dim);">← Kaleidoscope</a>
+      <a href="case-study-vortex.html" style="font-size:13px;color:var(--text-dim);">Next: Vortex →</a>
+    </div>
+  </div>
+
+  <footer class="footer">
+    <span>SRUSHTI DHOBLEY © 2026</span>
+    <span>INTERACTION &amp; VISUAL DESIGNER</span>
+  </footer>
+  <script src="script.js"></script>
+</body>
+</html>

@@ -1,0 +1,392 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <title>Heritage Site Preservation by VR · Srushti Dhobley</title>
+  <meta name="description" content="MSc thesis: using Meta Quest 3 and Unity 6 to surface erased histories at Bunratty Castle through two purpose built VR rooms." />
+  <link rel="preconnect" href="https://fonts.googleapis.com" />
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
+  <link href="https://fonts.googleapis.com/css2?family=Inter:wght@300;400;500;600&family=Fraunces:ital,opsz,wght@0,9..144,300;0,9..144,400;1,9..144,300;1,9..144,400&display=swap" rel="stylesheet" />
+  <link rel="stylesheet" href="style.css" />
+  <style>
+    /* Global typography matching Pharmasight and portfolio style */
+    body {
+      font-family: 'Inter', sans-serif;
+    }
+
+    .case-body p {
+      margin-bottom: 24px;
+      line-height: 1.7;
+      font-size: 15px;
+      color: var(--text-dim);
+    }
+
+    /* Upright serif section headings matching the portfolio style */
+    .case-section-title {
+      font-family: 'Fraunces', serif;
+      font-size: 28px;
+      font-weight: 400;
+      font-style: normal;
+      color: var(--text);
+      margin-top: 56px;
+      margin-bottom: 20px;
+      letter-spacing: -0.01em;
+    }
+
+    .img-full { width:100%;border-radius:var(--radius-lg);border:1px solid var(--border);display:block;margin:28px 0; }
+    .img-caption { font-size:15px;color:var(--text-faint);text-align:center;margin-top:-18px;margin-bottom:28px;font-style:italic; }
+    .img-grid-2 { display:grid;grid-template-columns:1fr 1fr;gap:12px;margin:28px 0; }
+    .img-grid-2 img { width:100%;border-radius:var(--radius);border:1px solid var(--border);display:block;object-fit:cover;height:300px; }
+    
+    /* Image grid 3: height auto and object-fit contain to show full portrait images */
+    .img-grid-3 { display:grid;grid-template-columns:1fr 1fr 1fr;gap:12px;margin:28px 0; }
+    .img-grid-3 img { width:100%;border-radius:var(--radius);border:1px solid var(--border);display:block;height:auto;object-fit:contain;background:var(--bg2); }
+
+    .stat-grid { display:grid;grid-template-columns:repeat(4,1fr);gap:12px;margin:24px 0; }
+    .stat-card { background:var(--bg2);border:1px solid var(--border);border-radius:var(--radius);padding:18px 20px; }
+    .stat-num { font-family: 'Fraunces', serif; font-size: 34px; font-weight: 400; color: var(--accent); line-height: 1; margin-bottom: 8px; }
+    .stat-lbl { font-size:13px;color:var(--text-dim);font-weight:300;line-height:1.5; }
+    .tech-pills { display:flex;flex-wrap:wrap;gap:8px;margin:16px 0; }
+    .tech-pill { font-size:12px;font-weight:500;padding:5px 14px;border-radius:100px;background:var(--bg3);border:1px solid var(--border);color:var(--text); }
+    .tech-pill--accent { background:rgba(185,255,75,0.08);border-color:rgba(185,255,75,0.25);color:var(--accent); }
+    
+    /* screen-block for full-width single images */
+    .screen-block { margin:32px 0; }
+    .screen-link { display:block;border-radius:var(--radius-lg);overflow:hidden;border:1px solid var(--border);text-decoration:none; }
+    .screen-img { width:100%;display:block;transition:filter 0.2s;object-fit:contain;background:#0f0f0f; }
+    .screen-desc { font-size:15px;color:var(--text-dim);margin-top:12px;line-height:1.65; }
+    
+    /* quote / callout */
+    .pullquote { border-left:3px solid var(--accent);padding:16px 24px;margin:28px 0;background:var(--bg2);border-radius:0 var(--radius) var(--radius) 0; }
+    .pullquote p { font-family: 'Fraunces', serif; font-style: italic; font-size: 18px; font-weight: 400; line-height: 1.5; color: var(--text); margin: 0; }
+    .pullquote cite { display:block;margin-top:10px;font-size:13px;color:var(--text-dim);font-style:normal; }
+    
+    /* room card */
+    .room-card { background:var(--bg2);border:1px solid var(--border);border-radius:var(--radius-lg);padding:28px 32px;margin:24px 0; }
+    .room-card h4 { font-family: 'Fraunces', serif; font-size: 22px; font-weight: 400; color: var(--accent); margin: 0 0 6px; }
+    .room-card .room-sub { font-size:13px;color:var(--text-dim);margin-bottom:16px;letter-spacing:0.05em;text-transform:uppercase;font-weight:500; }
+    .room-card ul { list-style:none;padding:0;margin:0; }
+    .room-card ul li { padding:7px 0;border-bottom:1px solid var(--border);font-size:15px;color:var(--text-dim);display:flex;gap:12px;align-items:flex-start;line-height:1.55; }
+    .room-card ul li:last-child { border-bottom:none; }
+    .room-card ul li::before { content:"→";color:var(--accent);flex-shrink:0;margin-top:1px; }
+    
+    /* finding row */
+    .finding-row { display:grid;grid-template-columns:1fr 1fr;gap:16px;margin:24px 0; }
+    .finding-card { background:var(--bg2);border:1px solid var(--border);border-radius:var(--radius);padding:20px; }
+    .finding-card .fc-label { font-size:11px;font-weight:600;letter-spacing:0.1em;text-transform:uppercase;color:var(--accent);margin-bottom:8px; }
+    .finding-card p { font-size:15px;color:var(--text-dim);line-height:1.65;margin:0; }
+
+    @media(max-width:900px){
+      .stat-grid{grid-template-columns:1fr 1fr;}
+      .img-grid-2,.finding-row{grid-template-columns:1fr;}
+      .img-grid-3{grid-template-columns:1fr 1fr;}
+    }
+    @media(max-width:600px){
+      .img-grid-3{grid-template-columns:1fr;}
+      .stat-grid{grid-template-columns:1fr 1fr;}
+    }
+  </style>
+</head>
+<body>
+
+  <nav class="nav" id="nav">
+    <a href="index.html" class="nav-logo"><img src="logo.jpg" alt="Srushti Logo" style="height:40px;width:auto;display:block;" /></a>
+    <div class="nav-links">
+      <a href="projects.html">Projects</a>
+      <a href="about.html">About Me</a>
+      <a href="index.html#contact">Let's Connect</a>
+      <a href="Srushti_Dhobley_Resume.pdf" class="nav-cta" download>Download CV</a>
+    </div>
+    <button class="nav-burger" id="burger" aria-label="menu"><span></span><span></span></button>
+  </nav>
+  <div class="nav-mobile" id="navMobile">
+    <a href="projects.html">Projects</a>
+    <a href="about.html">About Me</a>
+    <a href="index.html#contact">Let's Connect</a>
+    <a href="Srushti_Dhobley_Resume.pdf" download>Download CV</a>
+  </div>
+
+  <!-- HERO -->
+  <div class="case-hero">
+    <a href="projects.html" style="font-size:13px;color:var(--text-dim);display:inline-flex;align-items:center;gap:6px;margin-bottom:32px;">← Back to projects</a>
+    <div class="project-tags">
+      <span class="tag">VR / XR Design</span>
+      <span class="tag">Heritage Tech</span>
+      <span class="tag">MSc Thesis</span>
+      <span class="tag">Interaction Design</span>
+    </div>
+    <h1>Heritage Site Preservation by Virtual Reality — Surfacing Erased Histories at Bunratty Castle Through Two Purpose-Built VR Rooms</h1>
+
+    <div class="case-meta-grid">
+      <div class="case-meta-item"><span class="case-meta-label">My Role</span><span class="case-meta-value">Researcher & VR Designer</span></div>
+      <div class="case-meta-item"><span class="case-meta-label">Duration</span><span class="case-meta-value">MSc Thesis, 2024–2025</span></div>
+      <div class="case-meta-item"><span class="case-meta-label">Tech Stack</span><span class="case-meta-value">Meta Quest 3 · Unity 6 · XR Interaction Toolkit · Blender</span></div>
+      <div class="case-meta-item"><span class="case-meta-label">Supervisor</span><span class="case-meta-value">Prof. Mark Marshall, University of Limerick</span></div>
+    </div>
+  </div>
+
+  <!-- COVER IMAGE -->
+  <div style="max-width:1000px;margin:0 auto;padding:0 48px 60px;">
+    <div style="position:relative;border-radius:var(--radius-lg);overflow:hidden;border:1px solid var(--border);background:#0a0a0a;">
+      <video id="heroVid" src="demo-video.mp4" autoplay muted loop playsinline style="width:100%;display:block;"></video>
+      <div style="position:absolute;bottom:16px;left:50%;transform:translateX(-50%);display:flex;gap:10px;z-index:10;">
+        <button onclick="(function(){var v=document.getElementById('heroVid');v.paused?v.play():v.pause();this.textContent=v.paused?'▶ Play':'⏸ Pause'}).call(this)"
+          style="background:rgba(0,0,0,0.7);color:#fff;border:1px solid rgba(255,255,255,0.3);border-radius:6px;padding:8px 16px;cursor:pointer;font-family:inherit;font-size:13px;backdrop-filter:blur(4px);">⏸ Pause</button>
+        <button onclick="(function(){var v=document.getElementById('heroVid');v.muted=!v.muted;this.textContent=v.muted?'🔇 Unmute':'🔊 Mute'}).call(this)"
+          style="background:rgba(0,0,0,0.7);color:#fff;border:1px solid rgba(255,255,255,0.3);border-radius:6px;padding:8px 16px;cursor:pointer;font-family:inherit;font-size:13px;backdrop-filter:blur(4px);">🔇 Unmute</button>
+      </div>
+    </div>
+  </div>
+
+  <!-- BODY -->
+  <div class="case-body">
+
+    <!-- OVERVIEW -->
+    <h2 class="case-section-title">Overview</h2>
+    <p>Bunratty Castle in Co. Clare, Ireland, receives over 350,000 visitors annually. Its guided tour tells a single authorised narrative: one centred on aristocratic occupation, primarily the O'Brien clan and their restoration in the 1950s. Whereas, The Sheela na Gig carved into its stone a pre-Christian female figure of contested meaning goes unmentioned. The Viking settlement of 960 AD, the Norman rebuilding of 1275 and the Gaelic communities who lived and worked there across four centuries are effectively absent from the experience.</p>
+    <p>This thesis asked a single practical question: can a self directed, guide free VR station surface the histories Bunratty's official interpretation structurally omits and does it change how visitors engage with what they then see on the physical tour?</p>
+
+    <div class="stat-grid">
+      <div class="stat-card"><div class="stat-num">18</div><div class="stat-lbl">survey respondents, pre-design phase</div></div>
+      <div class="stat-card"><div class="stat-num">8.5<span style="font-size:18px;">/10</span></div><div class="stat-lbl">interest in heritage history</div></div>
+      <div class="stat-card"><div class="stat-num">−72</div><div class="stat-lbl">NPS score for current heritage delivery</div></div>
+      <div class="stat-card"><div class="stat-num">5</div><div class="stat-lbl">participants in prototype user testing</div></div>
+    </div>
+
+    <p>The gap between 8.5/10 interest and a −72 NPS is not a motivation problem. It is a delivery problem one this project set out to address through design.</p>
+
+    <!-- RESEARCH CONTEXT -->
+    <h2 class="case-section-title">Research Context</h2>
+    <p>The theoretical grounding for this project comes from Laurajane Smith's concept of the Authorised Heritage Discourse (AHD): the institutional tendency to frame heritage as monumental, aristocratic and expert owned, while erasing the everyday experiences of ordinary people who lived in and around those sites. Bunratty is a near perfect example of AHD in practice. A meticulously restored castle interpreted entirely through its ruling occupants, with its pre Norman, non elite and contested histories left invisible.</p>
+    <p>The Sheela na Gig is the sharpest example of this erasure. It is carved into Bunratty's stone and visible to anyone who looks. The official tour does not acknowledge it. Its meaning is contested early medieval, possibly connected to fertility or boundary marking, possibly carved as a ward but the contest itself is the story the AHD suppresses in favour of silence.</p>
+
+    <div class="screen-block">
+      <a href="bunratty-context.jpg" target="_blank" class="screen-link">
+        <img src="bunratty-context.jpg" class="screen-img" alt="Bunratty Castle research context and AHD framework" onerror="this.parentElement.style.display='none'" />
+      </a>
+    </div>
+
+    <!-- USER GROUP -->
+    <h2 class="case-section-title">User Group</h2>
+    <p>The primary user group is independent visitors at Bunratty those who arrive without a structured group tour, who move at their own pace and make their own interpretive choices. A secondary group emerged from the survey data: visitors with physical mobility limitations for whom the existing tour's pacing and physical demands are a barrier.</p>
+    <p>The station concept was designed to be encountered at the Main Guard level, before the physical tour begins so that what the VR surfaces reshapes how visitors engage with the castle they are about to walk through.</p>
+
+    <!-- RESEARCH QUESTIONS -->
+    <h2 class="case-section-title">Research Questions</h2>
+
+    <div class="room-card">
+      <h4>RQ1</h4>
+      <div class="room-sub">The Sheela na Gig Chamber</div>
+      <p style="font-size:15px;color:var(--text-dim);line-height:1.65;margin:0;">Can object based VR interaction reframe the Sheela na Gig from a decorative carving into evidence of a deliberate institutional erasure, without a guide present to prompt that reinterpretation?</p>
+    </div>
+
+    <div class="room-card" style="margin-top: 16px;">
+      <h4>RQ2</h4>
+      <div class="room-sub">The Living Stone Era Filter</div>
+      <p style="font-size:15px;color:var(--text-dim);line-height:1.65;margin:0;">Can a VR era filter mechanic restore the visible presence of the ordinary inhabitants — Viking, Norman, Gaelic which are erased from Bunratty's official narrative and do visitors retain specific historical knowledge from the encounter?</p>
+    </div>
+
+    <!-- DESIGN PROCESS -->
+    <h2 class="case-section-title">Design Process</h2>
+
+    <h3 style="font-family:'Fraunces', serif;font-style:normal;font-size:20px;font-weight:400;color:var(--text);margin:32px 0 12px;">Survey and Personas</h3>
+    <p>An 18 respondent survey established the baseline: high interest in history (8.5/10), very low satisfaction with how heritage sites currently deliver it (NPS −72). The pull factors that draw people into historical stories are atmosphere and environment (dominant), everyday life and ordinary people (strong) and the sense of discovering something hidden. These directly shaped both interactions.</p>
+    <p>Three primary personas emerged from the survey data and site observation. <strong>Aoife, 28</strong> — a self directed independent visitor, emotionally motivated by atmosphere and discovery, frustrated by text heavy panels and passive listening formats. She represents the majority of independent visitors who arrive curious but leave unchanged. <strong>Tom, 55</strong> — a heritage enthusiast with a deep interest in Irish history, who visits with family and wants depth without disrupting the group pace. <strong>Niamh, 34</strong> — a local visitor with accessibility needs, for whom VR offers meaningful historical access that the physical tour cannot provide.</p>
+
+    <!-- Persona Grid -->
+    <div class="img-grid-3" id="persona-grid">
+      <div class="screen-block" style="margin:0;">
+        <a href="bunratty-persona-aoife.jpg" target="_blank" class="screen-link">
+          <img src="bunratty-persona-aoife.jpg" class="screen-img" alt="Persona — Aoife, 28" onerror="this.closest('.screen-block').style.display='none'" />
+        </a>
+      </div>
+      <div class="screen-block" style="margin:0;">
+        <a href="bunratty-persona-tom.jpg" target="_blank" class="screen-link">
+          <img src="bunratty-persona-tom.jpg" class="screen-img" alt="Persona — Tom, 55" onerror="this.closest('.screen-block').style.display='none'" />
+        </a>
+      </div>
+      <div class="screen-block" style="margin:0;">
+        <a href="bunratty-persona-niamh.jpg" target="_blank" class="screen-link">
+          <img src="bunratty-persona-niamh.jpg" class="screen-img" alt="Persona — Niamh, 34" onerror="this.closest('.screen-block').style.display='none'" />
+        </a>
+      </div>
+    </div>
+    <p class="screen-desc" style="text-align:center;margin-top:12px;">Three personas drove the design direction — spanning independent discovery, family depth-seeking, and accessibility-motivated access.</p>
+
+    <h3 style="font-family:'Fraunces', serif;font-style:normal;font-size:20px;font-weight:400;color:var(--text);margin:32px 0 12px;">Design Principles</h3>
+    <p>Five principles were established before ideation began, derived from survey findings and literature on embodied interaction at heritage sites:</p>
+    <ul style="list-style:none;padding:0;display:flex;flex-direction:column;gap:10px;margin:20px 0;">
+      <li style="display:flex;gap:12px;"><span style="color:var(--accent);font-weight:600;min-width:24px;">1.</span><span style="color:var(--text-dim);font-size:15px;line-height:1.6;"><strong style="color:var(--text);">Embodied over explained</strong> — interaction should carry meaning, not dominating text panels.</span></li>
+      <li style="display:flex;gap:12px;"><span style="color:var(--accent);font-weight:600;min-width:24px;">2.</span><span style="color:var(--text-dim);font-size:15px;line-height:1.6;"><strong style="color:var(--text);">Counter narrative without polemic</strong> — let the visitor discover the gap, not be told about it.</span></li>
+      <li style="display:flex;gap:12px;"><span style="color:var(--accent);font-weight:600;min-width:24px;">3.</span><span style="color:var(--text-dim);font-size:15px;line-height:1.6;"><strong style="color:var(--text);">Self directed, guide free</strong> — no staff required. The station must work unstaffed inside a live visitor flow.</span></li>
+      <li style="display:flex;gap:12px;"><span style="color:var(--accent);font-weight:600;min-width:24px;">4.</span><span style="color:var(--text-dim);font-size:15px;line-height:1.6;"><strong style="color:var(--text);">Visitor pace, structural boundaries</strong> — control of focus and order within a coherent narrative frame.</span></li>
+      <li style="display:flex;gap:12px;"><span style="color:var(--accent);font-weight:600;min-width:24px;">5.</span><span style="color:var(--text-dim);font-size:15px;line-height:1.6;"><strong style="color:var(--text);">Environmental design over text</strong> — materials, lighting and props should communicate era without requiring reading.</span></li>
+    </ul>
+
+    <div class="screen-block">
+      <a href="bunratty-blender.jpg" target="_blank" class="screen-link">
+        <img src="bunratty-blender.jpg" class="screen-img" alt="Bunratty Castle model in Blender — 3D asset modelling with Blender MCP" onerror="this.parentElement.style.display='none'" />
+      </a>
+      <p class="screen-desc">Castle architecture modelled in Blender 5.1 using Blender MCP for AI-assisted mesh refinement. Individual architectural components (merlon, arch, pillar sets) were modelled separately for era specific material overrides in Unity.</p>
+    </div>
+
+    <h3 style="font-family:'Fraunces', serif;font-style:normal;font-size:20px;font-weight:400;color:var(--text);margin:32px 0 12px;">Storyboard and Ideation</h3>
+    <p>Ideation explored several approaches to surfacing the Sheela na Gig story and the era layering concept. The reassembly mechanic where the visitor physically grabs fragments of the Sheela and places them onto the correct positions emerged as the strongest response to Design Principle 1. It makes the act of recovery literally embodied. The era filter emerged from the challenge of holding four temporal states (Viking 960 AD, Norman 1275 AD, Gaelic Earl 1500s, Present Day 1960s) in comparison without slowing the experience to a crawl.</p>
+
+    <div class="screen-block">
+      <a href="bunratty-storyboard.jpg" target="_blank" class="screen-link">
+        <img src="bunratty-storyboard.jpg" class="screen-img" alt="Mid-fidelity storyboard for both VR rooms" onerror="this.parentElement.style.display='none'" />
+      </a>
+      <p class="screen-desc">Mid-fidelity storyboard mapping both rooms' interaction sequences before high-fidelity prototyping began in Unity.</p>
+    </div>
+
+    <!-- ROOM 1 -->
+    <h2 class="case-section-title">Room 1 — The Sheela na Gig Chamber</h2>
+    <p>Room 1 is built around the Sheela na Gig: a female figure carved in stone at Bunratty, unacknowledged in the official tour. The visitor's task is to reassemble the figure — fragments are scattered across the room and must be grabbed and placed onto the correct positions on the sculpture. The act of reconstruction is the interpretive act: the visitor's hands do the recovering.</p>
+
+    <div class="room-card">
+      <h4>Six Interaction Touchpoints</h4>
+      <div class="room-sub">Visitor journey through the chamber</div>
+      <ul>
+        <li>Logo intro screen — establishes the station's framing and purpose before the headset goes on</li>
+        <li>Ghost sculpture — a ghosted Sheela na Gig appears, showing the full figure the visitor will reconstruct</li>
+        <li>Instruction panel — a single compact guide: "reach toward a glowing fragment, hold the grip button to pick it up, release on its slot to place it"</li>
+        <li>Correct / wrong placement feedback — immediate visual and haptic feedback; wrong placements bounce back; correct placements lock with a sound and glow</li>
+        <li>Progress confirmation — a counter shows how many fragments remain; no timer, visitor paces themselves</li>
+        <li>Gold reveal — completing the figure triggers a full gold reveal of the Sheela with contextual micro-copy about its meaning and its absence from the tour</li>
+      </ul>
+    </div>
+
+    <div class="img-grid-2" style="margin:24px 0;">
+      <img src="bunratty-touch-1.webp" alt="Room 1 — Puzzle start, fragments floating, 0% progress" style="width:100%;border-radius:var(--radius);border:1px solid var(--border);object-fit:cover;" />
+      <img src="bunratty-touch-2.webp" alt="Room 1 — Wrong placement feedback, 20% progress" style="width:100%;border-radius:var(--radius);border:1px solid var(--border);object-fit:cover;" />
+      <img src="bunratty-touch-3.webp" alt="Room 1 — Fragment 5 of 5, near completion 99%" style="width:100%;border-radius:var(--radius);border:1px solid var(--border);object-fit:cover;" />
+      <img src="bunratty-room1.jpg" class="screen-img" alt="Room 1 — Sheela na Gig Chamber high-fidelity prototype" onerror="this.parentElement.style.display='none'" />
+      </a>
+    </div>
+
+    <div class="screen-block">
+      
+        
+      <p class="screen-desc">High-fidelity prototype of Room 1 in Unity 6. The Sheela na Gig chamber uses a grab-and-place mechanic built with XR Interaction Toolkit. Fragment assets were modelled in Blender.</p>
+    </div>
+
+    <div class="img-grid-2">
+      
+    </div>
+
+    <!-- ROOM 2 -->
+    <h2 class="case-section-title">Room 2 — The Living Stone Era Filter</h2>
+    <p>Room 2 holds four eras of Bunratty simultaneously. The visitor stands in an isometric view of the castle and uses a controller HUD to switch between Viking 960 AD, Norman 1275 AD, Gaelic Earl 1500s and Present Day 1960s. Each era change rewrites materials, lighting, props and the castle's visible occupation. The stone itself stays constant; the world around it shifts.</p>
+    <p>The mechanic choice of a HUD press rather than a grab based rotation was deliberate. Room 1's research question is about recovery, so the visitor's hand does the reconstructing piece by piece. Room 2's question is about holding four eras in comparison, which requires instant and repeatable switching. A grab mechanic tested as too slow and unreliable for that cognitive task. In user testing, nobody found the mechanical difference between the two rooms inconsistent, because the mechanic matched what each room was asking of them.</p>
+
+    <div class="room-card">
+      <h4>Four Eras in One Space</h4>
+      <div class="room-sub">Living Stone Era Filter — timeline</div>
+      <ul>
+        <li><strong>Viking 960 AD</strong> — timber longhouse, shallow earthworks, rough-hewn materials; the castle does not yet exist in this form</li>
+        <li><strong>Norman 1275 AD</strong> — stone keep begins, fortified entrance, Norman architectural vocabulary</li>
+        <li><strong>Gaelic Earl 1500s</strong> — the castle at peak occupation; Gaelic communities, banquet hall active, everyday domestic life made visible</li>
+        <li><strong>Present Day 1960s</strong> — the Gort restoration; the institutional decision that produced the castle visitors see today</li>
+      </ul>
+    </div>
+
+    <div class="img-grid-2">
+      <img src="bunratty-present.jpg" alt="Present Day era — teal-grey castle, restored museum state" onerror="this.closest('.img-grid-2').style.display='none'" />
+      <img src="bunratty-present-hud.jpg" alt="Present Day HUD panel with era selector and Quest controller" onerror="this.closest('.img-grid-2').style.display='none'" />
+    </div>
+
+    <div class="img-grid-2">
+      <img src="bunratty-viking.jpg" alt="Viking 960 AD era — timber and Shannon estuary" onerror="this.closest('.img-grid-3').style.display='none'" />
+      <img src="bunratty-norman.jpg" alt="Norman 1275 AD era — fortified exterior, soldiers" onerror="this.closest('.img-grid-3').style.display='none'" />
+      <img src="bunratty-gaelic-int.jpg" alt="Gaelic Earl 1500s era — interior with chandelier and canopied bed" onerror="this.closest('.img-grid-3').style.display='none'" />
+      <img src="bunratty-r2-close.jpg" alt="What You Uncovered — Room 2 closing summary panel" onerror="this.closest('.img-grid-2').style.display='none'" />
+    </div>
+
+    <div class="img-grid-2" style="margin-top:12px;">
+     
+    </div>
+    <p class="screen-desc" style="margin-top:-16px;">"What You Uncovered" — Room 2's closing summary panel (left). Wayfinding beacon system in Unity: pulsing cyan chevrons guide visitors from spawn point to castle entrance before instructions appear (right).</p>
+
+    <!-- VISUAL LANGUAGE -->
+    <h2 class="case-section-title">Visual Language</h2>
+    <p>The visual system across both rooms was designed to be historically grounded. The design tests for photorealism were approached with calibrated expectations: one testing participant was explicit that "conceptual accuracy mattered more to him than graphics." Materials communicate era through texture and colour temperature rather than explicit labelling like rough timber and dim amber for Viking, cut stone and cooler light for Norman, woven textiles and firelight for Gaelic.</p>
+    <p>TextMesh Pro was used throughout for all in-world typography. Panel copy was kept deliberately short "felt more like captions than essays" was the description one participant offered.</p>
+
+    
+
+    <!-- STATION PLACEMENT -->
+    <h2 class="case-section-title">Station Integration at Bunratty</h2>
+    <p>The station concept places both VR rooms at Main Guard level before the physical tour begins. This sequencing is what the VR surfaces should reshape how visitors engage with the castle they are about to walk through. The station is designed to be self contained and runnable on a single Meta Quest 3 unit. A wayfinding sequence built into the VR environment itself a pulsing trail of glowing directional chevrons guides visitors from the spawn point to the castle entrance establishing purpose before procedure.</p>
+
+    <div class="pullquote">
+      <p>"Completing the VR station before the physical tour will change how you experienced the tour itself. If so, how?"</p>
+      <cite>— User testing interview question, testing whether VR changes the physical visit that follows</cite>
+    </div>
+
+    <!-- USER TESTING -->
+    <h2 class="case-section-title">User Testing</h2>
+    <p>Five participants completed both VR rooms in facilitated sessions. The protocol measured three things: usability (can visitors complete each room without guidance?), historical engagement (can visitors name a specific historical fact unprompted after the session?) and environmental legibility (can visitors identify which era they are in from environmental cues alone, without reading the HUD label?).</p>
+
+    <h3 style="font-family:'Fraunces', serif;font-style:normal;font-size:20px;font-weight:400;color:var(--text);margin:28px 0 12px;">What the Testing Confirmed</h3>
+
+    <div class="finding-row">
+      <div class="finding-card">
+        <div class="fc-label">Room 1 — Highlight</div>
+        <p>The reassembly mechanic was the most consistently named highlight across all five participants. P1 called it "embodied research"; P4 described it as "the sense of personally restoring the Sheela." P2 valued the audio layer listening facts while acting let her "stay engaged without having to read everything."</p>
+      </div>
+      <div class="finding-card">
+        <div class="fc-label">Historical Retention</div>
+        <p>All five participants confirmed that the VR experience surfaced histories absent from the physical tour. Every participant reinterpreted the Sheela na Gig from a decorative carving into evidence of a deliberate institutional decision (without being told to).</p>
+      </div>
+      <div class="finding-card">
+        <div class="fc-label">Discovery Over Explanation</div>
+        <p>All five participants described their experience in terms closer to discovery than explanation. P3's response was the most direct: "strongly weighted toward discovery." P1 extended this into a claim about agency: "a participant in building the story compared to a passive listener."</p>
+      </div>
+      <div class="finding-card">
+        <div class="fc-label">Sequencing Confirmed</div>
+        <p>Every participant preferred encountering both VR rooms before the physical tour. Four of five specified the Sheela na Gig chamber first. All five described the pacing as appropriate with no requests to shorten either room.</p>
+      </div>
+    </div>
+
+    <h3 style="font-family:'Fraunces', serif;font-style:normal;font-size:20px;font-weight:400;color:var(--text);margin:28px 0 12px;">What It Surfaced as Gaps</h3>
+
+    <div class="finding-row">
+      <div class="finding-card">
+        <div class="fc-label">Missing Narrative Frame</div>
+        <p>Four of five participants raised a version of the same gap: the opening was too abrupt and the closing lacked a clear finish moment. P5: "the lack of a clear 'you're done, here's what you learned' moment." Fixed in the next iteration as a single VR Equipment Usage Guide panel at station entry, with a closing summary in both rooms.</p>
+      </div>
+      <div class="finding-card">
+        <div class="fc-label">Panel Placement</div>
+        <p>P2 and P5 both wanted panels positioned closer to the interaction itself at eye level near the fragments rather than requiring the visitor to look away from the action to find context. P1 and P3 also wanted the counter narrative intent made explicit rather than left unstated.</p>
+      </div>
+    </div>
+
+    <div class="screen-block">
+      <a href="bunratty-usertesting.jpg" target="_blank" class="screen-link">
+        <img src="bunratty-usertesting.jpg" class="screen-img" alt="User testing session with Meta Quest 3" onerror="this.parentElement.style.display='none'" />
+      </a>
+       <div class="screen-block">
+      <a href="bunratty-visual.jpg" target="_blank" class="screen-link">
+        <img src="bunratty-visual.jpg" class="screen-img" alt="Visual language system — materials, lighting, typography" onerror="this.parentElement.style.display='none'" />
+      </a>
+    </div>
+      <p class="screen-desc">VR Equipment Usage Guide panel added post-testing — a single entry point covering both rooms' controls, establishing purpose before instruction.</p>
+    </div>
+
+    <!-- REFLECTION -->
+    <h2 class="case-section-title">Reflection</h2>
+    <p>The decision I had to defend most to myself and eventually to testing participants was keeping Room 1 and Room 2 mechanically different. Room 1's research question is about recovery, so the visitor's hand does the reconstructing. Room 2's question is about holding four eras in comparison, which a grab based rotation made slow and in early testing unreliable. A HUD press is instant and repeatable, which is what comparison actually needs.</p>
+    <p>In practice, testing validated the split: nobody struggled to understand why the two rooms behaved differently once they were inside them because the mechanic matched the cognitive task each room was asking of them. The lesson I'm taking forward is that consistency should be judged at the level of the interaction language like single input, immediate feedback, visitor pace not at the level of the specific gesture.</p>
+    <p>The clearest example of the process actually working as intended was the response to the narrative frame and wayfinding findings. Four of five participants independently raised a missing narrative frame and three raised a wayfinding gap. Rather than patching each room separately, I built a single wayfinding sequence and a single equipment guide that sits in front of both rooms reading the two findings together rather than as two separate tickets.</p>
+
+    <!-- OUTCOME -->
+    <h2 class="case-section-title">Outcome</h2>
+    <p>User testing with five participants provided consistent, convergent evidence that VR can style surface erased heritage histories at prototype scale, for the specific histories this project focused on. Both research questions received directional positive answers: object-based interaction did reframe the Sheela na Gig without a guide and the era filter did make the castle's layered occupation visible and retainable.</p>
+    <p>What the testing does not establish and the thesis is explicit about this is whether this holds at the scale and in the setting the project is designed for: an unstaffed station inside a live visitor flow at Bunratty itself. That gap between tested prototype and deployment reality is the honest boundary.</p>
+
+  </div>
+
+</body>
+</html>
